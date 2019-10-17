@@ -76,7 +76,14 @@ WSGI_APPLICATION = 'mentorprogram.wsgi.application'
 
 DATABASES = {
     'default': {
-    TODO
+    'NAME': 'mentorprogram',
+    'ENGINE': 'django.db.backends.mysql',
+    'USER': 'dev_admin@mentor-program-dev',
+    'PASSWORD': 'Useless@123',
+    'HOST': 'mentor-program-dev.mysql.database.azure.com',
+    'PORT': '3306',
+    'OPTIONS': {
+    'autocommit': True,
          }
     }
 }
