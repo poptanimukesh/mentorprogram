@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <title>Mentor Registration</title>
+    <head>
+        <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all" />
+
+        <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" type="text/css" media="all" />
+
+        <link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
+
+        <style type="text/css">
+            .header {
+                align-content: center;
+                width: 100%;
+            }
+            .lead {
+                margin-bottom: 8px;
+                font-size: 18px;
+            }
+            .row {
+                margin-bottom: 15px;
+            }
+            .form-rounded {
+                border-radius: 1rem;
+            }
+            .style45 {
+                font-size: 70px;
+                color: #000000;
+            }
+        </style>
+    </head>
+    <body>
+        <table width="100%">
+            <tbody>
+            <tr>
+                <td height="104" align="center" valign="middle" bgcolor="#F4F4F4">
+                    <span class="style45">
+                        <img src="https://www.5050leadership.org/PHOTOS/LOGO.png" width="147" height="147">
+                        <span class="lead" style="font-size: 60px; font-weight: bold;">50/50 Leadership</span> 
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class = "container vertical-center">
+            <div class = "text-center lead">
+                    <span class = "lead" style="font-size: 40px; font-weight: bold;">Mentor Registration</span>
+                    <p>
+                        Please answer the following questions to help us find you a mentor that is the best fit for you. 
+                    </p>
+            </div>
+            <form class = "">
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="name" class="lead">Name</label>
+                        <input type="text" class="form-control form-rounded" id="name" placeholder="Enter Name">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="date" class="lead">Date</label>
+                        <input class="form-control form-rounded" type="date" placeholder="mm/dd//yyyy" id="example-date-input">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="street_address" class="lead">Street Address</label>
+                        <input type="text" class="form-control form-rounded" id="street_address" placeholder="Enter Address">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="street_address" class="lead">State/City/ZIP</label>
+                        <input type="text" class="form-control form-rounded" id="state_city_zip" placeholder="Enter State/City/ZIP">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="phone" class="lead">Cell Phone</label>
+                        <input type="text" class="form-control form-rounded" id="phone" placeholder="Enter Phone">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="email" class="lead">Email</label>
+                        <input type="email" class="form-control form-rounded" id="email" placeholder="Enter Email">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="city" class="lead">City where you live</label>
+                        <input type="text" class="form-control form-rounded" id="city" placeholder="Enter City">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_1" class="lead">1. Why do you want to become a mentor?</label>
+                        <textarea class="form-control form-rounded" id="details_1" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_2" class="lead">2. Provide a brief summary of your relevant experience – education, work experience, specialized skills, previous mentoring, etc.</label>
+                        <textarea class="form-control form-rounded" id="details_2" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_3" class="lead">3. Please give an example of how you have dealt with a difficult financial situation</label>
+                        <textarea class="form-control form-rounded" id="details_3" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_4" class="lead">4. Can you commit to a minimum of one year from the time you are matched?</label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes">
+                        <label class="form-check-label lead" for="mentor_race">
+                            Yes
+                        </label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No">
+                        <label class="form-check-label lead" for="mentor_race">
+                            No
+                        </label>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_5" class="lead">5. Are you available at least 4-6 hours per month to interact with your mentee once you are matched?</label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes">
+                        <label class="form-check-label lead" for="mentor_race">
+                            Yes
+                        </label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No">
+                        <label class="form-check-label lead" for="mentor_race">
+                            No
+                        </label>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_7" class="lead">6. Are you willing to attend the mentor training?</label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes">
+                        <label class="form-check-label lead" for="mentor_race">
+                            Yes
+                        </label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No">
+                        <label class="form-check-label lead" for="mentor_race">
+                            No
+                        </label>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="mentor_race" class="lead">7. Are you willing to attend at least 4 monthly mentors group meetings per year when you are matched?</label><br>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes">
+                        <label class="form-check-label lead" for="mentor_race">
+                            Yes
+                        </label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No">
+                        <label class="form-check-label lead" for="mentor_race">
+                            No
+                        </label>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_6" class="lead">8. Is there anything else you would like to tell us about yourself?</label>
+                        <textarea class="form-control form-rounded" id="details_8" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <br>
+                <div class = "row">
+                    <div class = "col-sm-5"></div>
+                    <div class = "col-sm-2">
+                        <button type="button" class="btn btn-primary lead">Submit</button>
+                    </div>
+                    <div class = "col-sm-5"></div>
+                </div>
+                
+            </form>
+        </div>
+    </body>
+</html>

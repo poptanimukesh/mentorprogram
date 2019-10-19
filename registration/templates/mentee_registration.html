@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <title>Mentee Registration</title>
+    <head>
+        <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all" />
+
+        <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" type="text/css" media="all" />
+
+        <link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
+
+        <style type="text/css">
+            .header {
+                align-content: center;
+                width: 100%;
+            }
+            .lead {
+                margin-bottom: 8px;
+                font-size: 18px;
+            }
+            .row {
+                margin-bottom: 15px;
+            }
+            .form-rounded {
+                border-radius: 1rem;
+            }
+            .style45 {
+                font-size: 70px;
+                color: #000000;
+            }
+        </style>
+    </head>
+    <body>
+        <table width="100%">
+            <tbody>
+            <tr>
+                <td height="104" align="center" valign="middle" bgcolor="#F4F4F4">
+                    <span class="style45">
+                        <img src="https://www.5050leadership.org/PHOTOS/LOGO.png" width="147" height="147">
+                        <span class="lead" style="font-size: 60px; font-weight: bold;">50/50 Leadership</span> 
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class = "container vertical-center">
+            <div class = "text-center lead">
+                    <span class = "lead" style="font-size: 40px; font-weight: bold;">Mentee Registration</span>
+                    <p>
+                        Please answer the following questions to help us find you a mentor that is the best fit for you. 
+                    </p>
+            </div>
+            <form class = "">
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="name" class="lead">Your Name</label>
+                        <input type="text" class="form-control form-rounded" id="name" placeholder="Enter Name">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="age" class="lead">Your Age</label>
+                        <input type="text" class="form-control form-rounded" id="age" placeholder="Enter Age">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="phone" class="lead">Cell Phone</label>
+                        <input type="text" class="form-control form-rounded" id="phone" placeholder="Enter Phone">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="email" class="lead">Email</label>
+                        <input type="email" class="form-control form-rounded" id="email" placeholder="Enter Email">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="city" class="lead">City where you live</label>
+                        <input type="text" class="form-control form-rounded" id="city" placeholder="Enter City">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="communication_platform" class="lead">Are you comfortable using Skype, Zoom, or other similar platforms to communicate?</label><br>
+                        <input class="custom-control-input" type="radio" name="platform_yes_no" id="platform_yes_no" value="Yes">
+                        <label class="custom-control-label lead" for="platform_yes_no">
+                            Yes
+                        </label>
+                        <input class="custom-control-input" type="radio" name="platform_yes_no" id="platform_yes_no" value="No">
+                        <label class="custom-control-label lead" for="platform_yes_no">
+                            No
+                        </label>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class="custom-control custom-radio">
+                    
+                    
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_1" class="lead">What is one desire/dream/passion that you have?</label>
+                        <textarea class="form-control form-rounded" id="details_1" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_2" class="lead">Please tell us one thing you would like to get out of having a mentor?</label>
+                        <textarea class="form-control form-rounded" id="details_2" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_3" class="lead">Please describe yourself, e.g. sports nut, techie, social butterfly, dog lover, foodie, health nut, traveler etc.</label>
+                        <textarea class="form-control form-rounded" id="details_3" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_4" class="lead">Are there any major challenges you are currently confronting?</label>
+                        <textarea class="form-control form-rounded" id="details_4" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_5" class="lead">Describe your ideal mentor</label>
+                        <textarea class="form-control form-rounded" id="details_5" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_7" class="lead">Is there anything else you would like to tell us about yourself or what you want from your mentor relationship?</label>
+                        <textarea class="form-control form-rounded" id="details_7" rows="3"></textarea>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="mentor_race" class="lead">Is it important for you to have a mentor of the same race/ethnicity?</label><br>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes">
+                        <label class="form-check-label lead" for="mentor_race">
+                            Yes
+                        </label>
+                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No">
+                        <label class="form-check-label lead" for="mentor_race">
+                            No
+                        </label>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="details_6" class="lead">If yes, with what race/ethnicity do you identify?</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                            <option>American Indian or Alaska Native</option>
+                            <option>Asian</option>
+                            <option>Black or African American</option>
+                            <option>Native Hawaiian or Other Pacific Islander</option>
+                            <option>White</option>
+                        </select>
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <br>
+                <div class = "row">
+                    <div class = "col-sm-5"></div>
+                    <div class = "col-sm-2">
+                        <button type="button" class="btn btn-primary lead">Submit</button>
+                    </div>
+                    <div class = "col-sm-5"></div>
+                </div>
+                
+            </form>
+        </div>
+    </body>
+</html>
