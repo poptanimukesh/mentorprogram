@@ -120,7 +120,8 @@
 	      		mentee_id: $('#mentee-list').DataTable().rows({ selected: true }).data()[0][0]},
 	      success: function(result){
 	        alert("Success");
-	        document.location.reload(true);
+	        $('#mentor-list').DataTable().row('.selected').remove().draw();
+            $('#mentee-list').DataTable().row('.selected').remove().draw();
 	      }
 	    });
 	}
