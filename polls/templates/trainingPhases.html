@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all" />
+<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" type="text/css" media="all" />
+<link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
+
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600'>
+
+<style type="text/css">
+    .style45 {
+        font-size: 70px;
+        color: #000000;
+    }
+
+html {
+    -webkit-font-smoothing: antialiased!important;
+    -moz-osx-font-smoothing: grayscale!important;
+    -ms-font-smoothing: antialiased!important;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size:16px;
+  color:#555555; 
+}
+.md-stepper-horizontal {
+    display:table;
+    margin:0 auto;
+    background-color:#FFFFFF;
+    box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
+}
+.md-stepper-horizontal .md-step {
+    display:table-cell;
+    position:relative;
+    padding:24px;
+}
+.md-stepper-horizontal .md-step:hover,
+.md-stepper-horizontal .md-step:active {
+    background-color:rgba(0,0,0,0.04);
+}
+.md-stepper-horizontal .md-step:active {
+    border-radius: 15% / 75%;
+}
+.md-stepper-horizontal .md-step:first-child:active {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.md-stepper-horizontal .md-step:last-child:active {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.md-stepper-horizontal .md-step:hover .md-step-circle {
+    background-color:#757575;
+}
+.md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+.md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+    display:none;
+}
+.md-stepper-horizontal .md-step .md-step-circle {
+    width:30px;
+    height:30px;
+    margin:0 auto;
+    background-color:#999999;
+    border-radius: 50%;
+    text-align: center;
+    line-height:30px;
+    font-size: 16px;
+    font-weight: 600;
+    color:#FFFFFF;
+}
+.md-stepper-horizontal.green .md-step.active .md-step-circle {
+    background-color:#00AE4D;
+}
+.md-stepper-horizontal.orange .md-step.active .md-step-circle {
+    background-color:#0259f9;
+}
+.md-stepper-horizontal .md-step.active .md-step-circle {
+    background-color: rgb(33,150,243);
+}
+.md-stepper-horizontal .md-step.done .md-step-circle:before {
+    font-family:'FontAwesome';
+    font-weight:100;
+    content: "\f00c";
+}
+.md-stepper-horizontal .md-step.done .md-step-circle *,
+.md-stepper-horizontal .md-step.editable .md-step-circle * {
+    display:none;
+}
+.md-stepper-horizontal .md-step.editable .md-step-circle {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.md-stepper-horizontal .md-step.editable .md-step-circle:before {
+    font-family:'FontAwesome';
+    font-weight:100;
+    content: "\f040";
+}
+.md-stepper-horizontal .md-step .md-step-title {
+    margin-top:16px;
+    font-size:16px;
+    font-weight:600;
+}
+.md-stepper-horizontal .md-step .md-step-title,
+.md-stepper-horizontal .md-step .md-step-optional {
+    text-align: center;
+    color:rgba(0,0,0,.26);
+}
+.md-stepper-horizontal .md-step.active .md-step-title {
+    font-weight: 600;
+    color:rgba(0,0,0,.87);
+}
+.md-stepper-horizontal .md-step.active.done .md-step-title,
+.md-stepper-horizontal .md-step.active.editable .md-step-title {
+    font-weight:600;
+}
+.md-stepper-horizontal .md-step .md-step-optional {
+    font-size:12px;
+}
+.md-stepper-horizontal .md-step.active .md-step-optional {
+    color:rgba(0,0,0,.54);
+}
+.md-stepper-horizontal .md-step .md-step-bar-left,
+.md-stepper-horizontal .md-step .md-step-bar-right {
+    position:absolute;
+    top:36px;
+    height:1px;
+    border-top:1px solid #0259f9;
+}
+.md-stepper-horizontal .md-step .md-step-bar-right {
+    right:0;
+    left:50%;
+    margin-left:20px;
+}
+.md-stepper-horizontal .md-step .md-step-bar-left {
+    left:0;
+    right:50%;
+    margin-right:20px;
+}
+
+</style>
+</head>
+
+<body>
+    <table width="100%">
+        <tbody>
+        <tr>
+            <td height="104" align="center" valign="middle" bgcolor="#F4F4F4">
+                <span class="style45">
+                    <span class="style47">50/50 Leadership</span> 
+                    <img src="https://www.5050leadership.org/PHOTOS/LOGO.png" width="147" height="147" align="absmiddle">
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row" style="margin: 10px 5% 10px 5%">
+
+      <div class="col-sm-12">
+            <table id="mentor-list" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Mentor Id</th>
+                            <th>Mentor Name</th>
+                            <th>Training Phases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if mentor_list %}
+                            {% for m in mentor_list %}
+                                <tr id='{{ m.mentor_id }}'>
+                                    <td style="text-align: center;vertical-align: middle;">
+                                        {{ m.mentor_id }} 
+                                    </td>
+                                    <td style="text-align: center;vertical-align: middle;">
+                                        {{ m.firstname }} {{ m.lastname }} 
+                                    </td>
+                                    <td>
+                                        <div class="md-stepper-horizontal orange">
+                                            <div id='{{ m.mentor_id }}-0' class="md-step active" onclick="reset('{{ m.mentor_id }}')">
+                                              <div class="md-step-circle"><span>0</span></div>
+                                              <div class="md-step-title">Reset</div>
+                                            </div>
+                                            <div id='{{ m.mentor_id }}-1' class="md-step active {% if m.trainingphases > 0 %} done {% endif %}" onclick="markActivated(1,'{{ m.mentor_id }}')">
+                                              <div class="md-step-circle" style="{% if m.trainingphases > 0 %} background-color: green; {% endif %}"><span>1</span></div>
+                                              <div class="md-step-title">Step 1</div>
+                                              <div class="md-step-bar-right"></div>
+                                            </div>
+                                            <div id='{{ m.mentor_id }}-2' class="md-step active {% if m.trainingphases > 1 %} done {% endif %}" onclick="markActivated(2,'{{ m.mentor_id }}')">
+                                              <div class="md-step-circle" style="{% if m.trainingphases > 1 %} background-color: green; {% endif %}"><span>2</span></div>
+                                              <div class="md-step-title">Step 2</div>
+                                              <div class="md-step-bar-left"></div>
+                                              <div class="md-step-bar-right"></div>
+                                            </div>
+                                            <div id='{{ m.mentor_id }}-3' class="md-step active {% if m.trainingphases > 2 %} done {% endif %}" onclick="markActivated(3,'{{ m.mentor_id }}')">
+                                              <div class="md-step-circle" style="{% if m.trainingphases > 2 %} background-color: green; {% endif %}"><span>3</span></div>
+                                              <div class="md-step-title">Step 3</div>
+                                              <div class="md-step-bar-left"></div>
+                                              <div class="md-step-bar-right"></div>
+                                            </div>
+                                            <div id='{{ m.mentor_id }}-4' class="md-step active" onclick="markActivated(4,'{{ m.mentor_id }}')">
+                                              <div class="md-step-circle"><span>4</span></div>
+                                              <div class="md-step-title">Step 4</div>
+                                              <div class="md-step-bar-left"></div>
+                                              <div class="md-step-bar-right"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td><p>No mentor are available.</p></td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js'></script>
+
+<script type="text/javascript">
+    // $(document).ready(function() {
+    //     $('#mentor-list').DataTable( {
+    //         select: {
+    //             style: 'single'
+    //         }
+    //     } );
+
+    // } );
+
+    function reset(idValue) {
+        for(var i = 1; i <= 4; i++) {
+            $('#' + idValue + '-' + i).removeClass('done');
+            $('#' + idValue + '-' + i).children(":first").css( "background-color", "#0259f9");
+        }
+
+        $.ajax({
+          type: "POST",
+          url: '/polls/trainingPhases/',
+          data: {
+                    mentor_id: idValue,
+                    trainingphases: 0
+                },
+          success: function(result){
+          }
+        });
+    }
+
+    function markActivated(stepNumber,idValue) {
+        if(stepNumber == 4) {
+            if(!confirm("Are you sure?\n Marking this will ensure that mentor's training is complete and will be available for match"))
+                return
+        }
+
+        for(var i = 1; i <= stepNumber; i++) {
+           adone(idValue, i);
+        }
+        for(var i = stepNumber+1; i <= 4; i++) {
+            $('#' + idValue + '-' + i).removeClass('done');
+            $('#' + idValue + '-' + i).children(":first").css( "background-color", "#0259f9");
+        }
+
+        if(stepNumber == 4) 
+            $('#' + idValue).remove();
+
+        $.ajax({
+          type: "POST",
+          url: '/polls/trainingPhases/',
+          data: {
+                    mentor_id: idValue,
+                    trainingphases: stepNumber
+                },
+          success: function(result){
+          }
+        });
+    }
+
+    function adone(idValue, curr) {
+        var delayInMilliseconds = 200; //1 second
+      //your code to be executed after 1 second
+      setTimeout(function() {
+        $('#' + idValue + '-' + curr).addClass('done');
+        $('#' + idValue + '-' + curr).children(":first").css( "background-color", "green");
+      }, curr * delayInMilliseconds);
+    }
+
+</script>
+
+</html>
