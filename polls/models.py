@@ -26,6 +26,7 @@ class MentorData(models.Model):
     dob = models.CharField(max_length=20, blank=True, null=True)
     isactive = models.TextField(db_column='isActive', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     isavailable = models.TextField(db_column='isAvailable', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    trainingphases = models.IntegerField(db_column='trainingPhases', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

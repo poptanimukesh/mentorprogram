@@ -30,8 +30,8 @@ def index(request):
     	assoc.save()
     	return HttpResponse("SUCCESS")
     else:
-	    mentee_list = MenteeData.objects.all().filter(isavailable = 1)
-	    mentor_list = MentorData.objects.all().filter(isavailable = 1)
+	    mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1)
+	    mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1)
 	    # output = []
 	    # output.append("Mentee, Mentor<br/>");
 	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
@@ -43,8 +43,26 @@ def index(request):
 	    }
 	    return HttpResponse(template.render(context, request))
 
-def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+@csrf_exempt
+def trainingPhases(request):
+    if request.method == "POST":
+        mentorId = request.POST['mentor_id']
+
+        mentorObj = MentorData.objects.get(mentor_id = mentorId)
+        mentorObj.trainingphases = request.POST['trainingphases']
+        mentorObj.save()
+        print(request.POST['trainingphases'])
+        print(mentorObj.isavailable)
+
+        return HttpResponse("SUCCESS")
+    else:
+        mentor_list = MentorData.objects.all().filter(trainingphases__lt = 4, isactive = 1)
+        
+        template = loader.get_template('trainingPhases.html')
+        context = {
+            'mentor_list': mentor_list,
+        }
+        return HttpResponse(template.render(context, request))
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
