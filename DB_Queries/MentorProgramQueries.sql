@@ -18,6 +18,8 @@ firstname varchar(50),
 
 ALTER TABLE mentor_data AUTO_INCREMENT = 1000;
 
+ALTER TABLE mentor_data add column trainingPhases tinyint default 0;
+
 -- Mentee Data
 CREATE TABLE mentee_data    
 (mentee_id int(10) NOT NULL AUTO_INCREMENT,  
