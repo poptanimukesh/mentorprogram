@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class ActivityList(models.Model):
     activity_id = models.IntegerField()
     activity_type = models.CharField(max_length=50, blank=True, null=True)

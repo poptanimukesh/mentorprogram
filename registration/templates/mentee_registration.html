@@ -2,6 +2,7 @@
 <html>
     <title>Mentee Registration</title>
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all" />
 
         <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" type="text/css" media="all" />
@@ -49,12 +50,22 @@
                         Please answer the following questions to help us find you a mentor that is the best fit for you. 
                     </p>
             </div>
-            <form class = "">
+            <form class = "" action = "" method = "POST">
+                {% csrf_token %}
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="name" class="lead">Your Name</label>
-                        <input type="text" class="form-control form-rounded" id="name" placeholder="Enter Name">
+                        <label for="name" class="lead">First Name</label>
+                        <input type="text" class="form-control form-rounded" id="firstname" name="firstname" placeholder="First Name">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="name" class="lead">Last Name</label>
+                        <input type="text" class="form-control form-rounded" id="lastname" name="lastname" placeholder="Last Name">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -63,7 +74,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="age" class="lead">Your Age</label>
-                        <input type="text" class="form-control form-rounded" id="age" placeholder="Enter Age (In Years)">
+                        <input type="text" class="form-control form-rounded" id="age" name="age" placeholder="Enter Age (In Years)">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -72,7 +83,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="phone" class="lead">Cell Phone</label>
-                        <input type="text" class="form-control form-rounded" id="phone" placeholder="Enter Phone">
+                        <input type="text" class="form-control form-rounded" id="phone" name="phone" placeholder="Enter Phone">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -81,7 +92,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="email" class="lead">Email</label>
-                        <input type="email" class="form-control form-rounded" id="email" placeholder="Enter Email">
+                        <input type="email" class="form-control form-rounded" id="email" name="email" placeholder="Enter Email">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -90,7 +101,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="city" class="lead">City where you live</label>
-                        <input type="text" class="form-control form-rounded" id="city" placeholder="Enter City">
+                        <input type="text" class="form-control form-rounded" id="city" name="city" placeholder="Enter City">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -115,7 +126,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_1" class="lead">What is one desire/dream/passion that you have?</label>
-                        <textarea class="form-control form-rounded" id="details_1" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_1" name="details_1" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -124,7 +135,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_2" class="lead">Please tell us one thing you would like to get out of having a mentor?</label>
-                        <textarea class="form-control form-rounded" id="details_2" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_2" name="details_2" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -133,7 +144,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_3" class="lead">Please describe yourself, e.g. sports nut, techie, social butterfly, dog lover, foodie, health nut, traveler etc.</label>
-                        <textarea class="form-control form-rounded" id="details_3" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_3" name="details_3" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -142,7 +153,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_4" class="lead">Are there any major challenges you are currently confronting?</label>
-                        <textarea class="form-control form-rounded" id="details_4" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_4" name="details_4" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -151,7 +162,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_5" class="lead">Describe your ideal mentor</label>
-                        <textarea class="form-control form-rounded" id="details_5" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_5" name="details_5" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -159,8 +170,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_7" class="lead">Is there anything else you would like to tell us about yourself or what you want from your mentor relationship?</label>
-                        <textarea class="form-control form-rounded" id="details_7" rows="3"></textarea>
+                        <label for="details_6" class="lead">Is there anything else you would like to tell us about yourself or what you want from your mentor relationship?</label>
+                        <textarea class="form-control form-rounded" id="details_6" name="details_6" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -184,8 +195,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_6" class="lead">If yes, with what race/ethnicity do you identify?</label>
-                        <select id="inputState" class="form-control">
+                        <label for="mentor_race_details" class="lead">If yes, with what race/ethnicity do you identify?</label>
+                        <select id="mentor_race_details" class="form-control" name="mentor_race_details">
                             <option selected>Choose...</option>
                             <option>...</option>
                             <option>American Indian or Alaska Native</option>
@@ -202,7 +213,7 @@
                 <div class = "row">
                     <div class = "col-sm-5"></div>
                     <div class = "col-sm-2">
-                        <button type="button" class="btn btn-primary lead">Submit</button>
+                        <button type="submit" class="btn btn-primary lead">Submit</button>
                     </div>
                     <div class = "col-sm-5"></div>
                 </div>
