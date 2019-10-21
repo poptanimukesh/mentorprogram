@@ -28,6 +28,9 @@
                 font-size: 70px;
                 color: #000000;
             }
+            .required_field {
+                color: red;
+            }
         </style>
     </head>
     <body>
@@ -50,12 +53,21 @@
                         Please answer the following questions to help us find you a mentor that is the best fit for you. 
                     </p>
             </div>
-            <form class = "">
+            <form ACTION = "" METHOD = "POST">
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="name" class="lead">Name</label>
-                        <input type="text" class="form-control form-rounded" id="name" placeholder="Enter Name">
+                        <label for="firstname" class="lead">First Name <span class = "required_field">*</span></label>
+                        <input type="text" class="form-control form-rounded" id="firstname" name = "firstname" placeholder="First Name">
+                    </div>
+                    <div class = "col-sm-3"></div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-sm-3"></div>
+                    <div class = "col-sm-6">
+                        <label for="lastname" class="lead">Last Name <span class = "required_field">*</span></label>
+                        <input type="text" class="form-control form-rounded" id="lastname" name = "lastname" placeholder="Last Name">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -64,7 +76,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="date" class="lead">Date</label>
-                        <input class="form-control form-rounded" type="date" id="date" placeholder="dd.mm.yyyy">
+                        <input class="form-control form-rounded" type="date" id="date" name = "date" placeholder="dd.mm.yyyy">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -73,7 +85,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="street_address" class="lead">Street Address</label>
-                        <input type="text" class="form-control form-rounded" id="street_address" placeholder="Enter Address">
+                        <input type="text" class="form-control form-rounded" id="street_address" name = "street_address" placeholder="Enter Address">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -81,8 +93,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="city_state_zip" class="lead">City/State/ZIP</label>
-                        <input type="text" class="form-control form-rounded" id="city_state_zip" placeholder="Enter City/State/ZIP">
+                        <label for="city_state_zip" class="lead">City/State/ZIP <span class = "required_field">*</span></label>
+                        <input type="text" class="form-control form-rounded" id="city_state_zip" name = "city_state_zip" placeholder="Enter City/State/ZIP">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -90,8 +102,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="phone" class="lead">Phone No.</label>
-                        <input type="text" class="form-control form-rounded" id="phone" placeholder="Enter Phone No.">
+                        <label for="phone" class="lead">Phone No. <span class = "required_field">*</span></label>
+                        <input type="text" class="form-control form-rounded" id="phone" name = "phone" placeholder="Enter Phone No.">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -100,7 +112,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="phone_alter" class="lead">Phone (Alternative)</label>
-                        <input type="text" class="form-control form-rounded" id="phone_alter" placeholder="Enter Phone Alternative">
+                        <input type="text" class="form-control form-rounded" id="phone_alter" name = "phone_alter" placeholder="Enter Phone Alternative">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -108,8 +120,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="email" class="lead">Email</label>
-                        <input type="email" class="form-control form-rounded" id="email" placeholder="Enter Email">
+                        <label for="email" class="lead">Email <span class = "required_field">*</span></label>
+                        <input type="email" class="form-control form-rounded" id="email" name = "email" placeholder="Enter Email">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -117,8 +129,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="email" class="lead">Date of Birth</label>
-                        <input class="form-control form-rounded" type="date" id="date_of_birth" placeholder="dd.mm.yyyy">
+                        <label for="email" class="lead">Date of Birth <span class = "required_field">*</span></label>
+                        <input class="form-control form-rounded" type="date" id="date_of_birth" name = "date_of_birth" placeholder="dd.mm.yyyy">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -126,12 +138,12 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_4" class="lead">Preferred method of contact:</label>
-                        <input class="form-check-input" type="radio" name="pref_contact" id="pref_contact" value="phone">
+                        <label for="details_4" class="lead">Preferred method of contact: <span class = "required_field">*</span></label>
+                        <input class="form-check-input" type="radio" name="pref_contact" id="pref_contact" name = "pref_contact" value="phone">
                         <label class="form-check-label lead" for="pref_contact">
                             Phone
                         </label>
-                        <input class="form-check-input" type="radio" name="pref_contact" id="pref_contact" value="email">
+                        <input class="form-check-input" type="radio" name="pref_contact" id="pref_contact" name = "pref_contact" value="email">
                         <label class="form-check-label lead" for="pref_contact">
                             Email
                         </label>
@@ -143,9 +155,9 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="city" class="lead">Tell us about your current or most recent employment:</label>
-                        <input type="text" class="form-control form-rounded" id="employer" placeholder="Employer">
+                        <input type="text" class="form-control form-rounded" id="employer" name = "employer" placeholder="Employer">
                         <br>
-                        <input type="text" class="form-control form-rounded" id="position" placeholder="Position">
+                        <input type="text" class="form-control form-rounded" id="position" name = "position" placeholder="Position">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -154,7 +166,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="city" class="lead">Are you fluent in any other languages? If so, please specify</label>
-                        <input type="text" class="form-control form-rounded" id="languages" placeholder="Languages">
+                        <input type="text" class="form-control form-rounded" id="languages" name = "languages" placeholder="Languages">
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -170,8 +182,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_1" class="lead">1. Why do you want to become a mentor?</label>
-                        <textarea class="form-control form-rounded" id="details_1" rows="3"></textarea>
+                        <label for="details_1" class="lead">1. Why do you want to become a mentor? <span class = "required_field">*</span></label>
+                        <textarea class="form-control form-rounded" id="details_1" name = "details_1" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -180,7 +192,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_2" class="lead">2. Provide a brief summary of your relevant experience – education, work experience, specialized skills, previous mentoring, etc.</label>
-                        <textarea class="form-control form-rounded" id="details_2" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_2" name = "details_2" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -188,8 +200,8 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_3" class="lead">3. Please give an example of how you have dealt with a difficult financial situation</label>
-                        <textarea class="form-control form-rounded" id="details_3" rows="3"></textarea>
+                        <label for="details_3" class="lead">3. Please give an example of how you have dealt with a difficult financial situation <span class = "required_field">*</span></label>
+                        <textarea class="form-control form-rounded" id="details_3" name = "details_3" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -197,12 +209,12 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_4" class="lead">4. Can you commit to a minimum of one year from the time you are matched?</label>
-                        <input class="form-check-input" type="radio" name="details_4" id="details_4" value="Yes">
+                        <label for="details_4" class="lead">4. Can you commit to a minimum of one year from the time you are matched? <span class = "required_field">*</span></label>
+                        <input class="form-check-input" type="radio" name="details_4" id="details_4" name = "details_4" value="Yes">
                         <label class="form-check-label lead" for="details_4">
                             Yes
                         </label>
-                        <input class="form-check-input" type="radio" name="details_4" id="details_4" value="No">
+                        <input class="form-check-input" type="radio" name="details_4" id="details_4" name = "details_4" value="No">
                         <label class="form-check-label lead" for="details_4">
                             No
                         </label>
@@ -213,12 +225,12 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_5" class="lead">5. Are you available at least 4-6 hours per month to interact with your mentee once you are matched?</label>
-                        <input class="form-check-input" type="radio" name="details_5" id="details_5" value="Yes">
+                        <label for="details_5" class="lead">5. Are you available at least 4-6 hours per month to interact with your mentee once you are matched? <span class = "required_field">*</span></label>
+                        <input class="form-check-input" type="radio" name="details_5" id="details_5" name = "details_5" value="Yes">
                         <label class="form-check-label lead" for="details_5">
                             Yes
                         </label>
-                        <input class="form-check-input" type="radio" name="details_5" id="details_5" value="No">
+                        <input class="form-check-input" type="radio" name="details_5" id="details_5" name = "details_5" value="No">
                         <label class="form-check-label lead" for="details_5">
                             No
                         </label>
@@ -229,12 +241,12 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_6" class="lead">6. Are you willing to attend the mentor training?</label>
-                        <input class="form-check-input" type="radio" name="details_6" id="details_6" value="Yes">
+                        <label for="details_6" class="lead">6. Are you willing to attend the mentor training? <span class = "required_field">*</span></label>
+                        <input class="form-check-input" type="radio" name="details_6" id="details_6" name = "details_6" value="Yes">
                         <label class="form-check-label lead" for="details_6">
                             Yes
                         </label>
-                        <input class="form-check-input" type="radio" name="details_6" id="details_6" value="No">
+                        <input class="form-check-input" type="radio" name="details_6" id="details_6" name = "details_6" value="No">
                         <label class="form-check-label lead" for="details_6">
                             No
                         </label>
@@ -245,12 +257,12 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_7" class="lead">7. Are you willing to attend at least 4 monthly mentors group meetings per year when you are matched?</label><br>
-                        <input class="form-check-input" type="radio" name="details_7" id="details_7" value="Yes">
+                        <label for="details_7" class="lead">7. Are you willing to attend at least 4 monthly mentors group meetings per year when you are matched? <span class = "required_field">*</span></label><br>
+                        <input class="form-check-input" type="radio" name="details_7" id="details_7" name = "details_7" value="Yes">
                         <label class="form-check-label lead" for="details_7">
                             Yes
                         </label>
-                        <input class="form-check-input" type="radio" name="details_7" id="details_7" value="No">
+                        <input class="form-check-input" type="radio" name="details_7" id="details_7" name = "details_7" value="No">
                         <label class="form-check-label lead" for="details_7">
                             No
                         </label>
@@ -262,7 +274,7 @@
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
                         <label for="details_8" class="lead">8. Is there anything else you would like to tell us about yourself?</label>
-                        <textarea class="form-control form-rounded" id="details_8" rows="3"></textarea>
+                        <textarea class="form-control form-rounded" id="details_8" name = "details_8" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
                 </div>
@@ -271,7 +283,7 @@
                 <div class = "row">
                     <div class = "col-sm-5"></div>
                     <div class = "col-sm-2">
-                        <button type="button" class="btn btn-primary lead">Submit</button>
+                        <button type="submit" class="btn btn-primary lead">Submit</button>
                     </div>
                     <div class = "col-sm-5"></div>
                 </div>

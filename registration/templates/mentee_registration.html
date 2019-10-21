@@ -28,6 +28,9 @@
                 font-size: 70px;
                 color: #000000;
             }
+            .required_field {
+                color: red;
+            }
         </style>
     </head>
     <body>
@@ -55,7 +58,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="name" class="lead">First Name</label>
+                        <label for="name" class="lead">First Name <span class = "required_field">*</span></label>
                         <input type="text" class="form-control form-rounded" id="firstname" name="firstname" placeholder="First Name">
                     </div>
                     <div class = "col-sm-3"></div>
@@ -64,7 +67,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="name" class="lead">Last Name</label>
+                        <label for="name" class="lead">Last Name <span class = "required_field">*</span></label>
                         <input type="text" class="form-control form-rounded" id="lastname" name="lastname" placeholder="Last Name">
                     </div>
                     <div class = "col-sm-3"></div>
@@ -82,7 +85,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="phone" class="lead">Cell Phone</label>
+                        <label for="phone" class="lead">Cell Phone <span class = "required_field">*</span></label>
                         <input type="text" class="form-control form-rounded" id="phone" name="phone" placeholder="Enter Phone">
                     </div>
                     <div class = "col-sm-3"></div>
@@ -91,7 +94,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="email" class="lead">Email</label>
+                        <label for="email" class="lead">Email <span class = "required_field">*</span></label>
                         <input type="email" class="form-control form-rounded" id="email" name="email" placeholder="Enter Email">
                     </div>
                     <div class = "col-sm-3"></div>
@@ -100,7 +103,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="city" class="lead">City where you live</label>
+                        <label for="city" class="lead">City where you live <span class = "required_field">*</span></label>
                         <input type="text" class="form-control form-rounded" id="city" name="city" placeholder="Enter City">
                     </div>
                     <div class = "col-sm-3"></div>
@@ -134,7 +137,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_2" class="lead">Please tell us one thing you would like to get out of having a mentor?</label>
+                        <label for="details_2" class="lead">Please tell us one thing you would like to get out of having a mentor? <span class = "required_field">*</span></label>
                         <textarea class="form-control form-rounded" id="details_2" name="details_2" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
@@ -152,7 +155,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_4" class="lead">Are there any major challenges you are currently confronting?</label>
+                        <label for="details_4" class="lead">Are there any major challenges you are currently confronting? <span class = "required_field">*</span></label>
                         <textarea class="form-control form-rounded" id="details_4" name="details_4" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
@@ -161,7 +164,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="details_5" class="lead">Describe your ideal mentor</label>
+                        <label for="details_5" class="lead">Describe your ideal mentor <span class = "required_field">*</span></label>
                         <textarea class="form-control form-rounded" id="details_5" name="details_5" rows="3"></textarea>
                     </div>
                     <div class = "col-sm-3"></div>
@@ -179,7 +182,7 @@
                 <div class = "row">
                     <div class = "col-sm-3"></div>
                     <div class = "col-sm-6">
-                        <label for="mentor_race" class="lead">Is it important for you to have a mentor of the same race/ethnicity?</label><br>
+                        <label for="mentor_race" class="lead">Is it important for you to have a mentor of the same race/ethnicity? <span class = "required_field">*</span></label><br>
                         <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes">
                         <label class="form-check-label lead" for="mentor_race">
                             Yes

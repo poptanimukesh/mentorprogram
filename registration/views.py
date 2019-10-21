@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
-from .models import menteeData
-from .models import menteeRegistrationData
+from .models import menteeData, menteeRegistrationData, mentorData, mentorRegistrationData
 
 @csrf_exempt
 def mentee_registration(request):
@@ -36,8 +35,41 @@ def mentee_registration(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+@csrf_exempt
 def mentor_registration(request):
-    
+    if request.method == 'POST':
+        mData = mentorData()
+        mRegData = mentorRegistrationData()
+
+        #Storing Mentor Personal Details
+        mData.firstname = request.POST.get('firstname')
+        mData.lastname = request.POST.get('lastname')
+        mData.date = request.POST.get('date')
+        mData.street_address = request.POST.get('street_address')
+        mData.city_state_zip = request.POST.get('city_state_zip')
+        mData.phone = request.POST.get('phone')
+        mData.phone_alter = request.POST.get('phone_alter')
+        mData.email = request.POST.get('email')
+        mData.date_of_birth = request.POST.get('date_of_birth')
+        mData.pref_contact = request.POST.get('pref_contact')
+        mData.recent_employer = request.POST.get('employer')
+        mData.recent_position = request.POST.get('position')
+        mData.languages = request.POST.get('languages')
+
+        #Storing Mentor Other Registration 
+        mRegData.why_mentor = request.POST.get('details_1')
+        mRegData.brief_summary = request.POST.get('details_2')
+        mRegData.diff_situation = request.POST.get('details_3')
+        mRegData.min_commit = request.POST.get('details_4')
+        mRegData.min_avail = request.POST.get('details_5')
+        mRegData.mentor_training = request.POST.get('details_6')
+        mRegData.group_meetings = request.POST.get('details_7')
+        mRegData.any_else = request.POST.get('details_8')
+        
+        
+        mData.save()
+        mRegData.save()
+
     template = loader.get_template('mentor_registration.html')
     context = {
     }

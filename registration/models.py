@@ -29,4 +29,36 @@ class menteeRegistrationData(models.Model):
     class Meta:
         db_table = 'mentee_reg_data'
         
+class mentorData(models.Model):
+    mentor_id = models.AutoField(primary_key=True)
+    firstname = models.CharField(max_length=50, blank=True, null=True)
+    lastname = models.CharField(max_length=50, blank=True, null=True)
+    date = models.DateTimeField()
+    street_address = models.CharField(max_length=100, blank=True, null=True)
+    city_state_zip = models.CharField(max_length=150, blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    phone_alter = models.CharField(max_length=20, blank=True, null=True)
+    email = models.CharField(max_length=50, blank=True, null=True)
+    date_of_birth = models.DateTimeField()
+    pref_contact = models.CharField(max_length=10, blank=True, null=True)
+    recent_employer = models.CharField(max_length=50, blank=True, null=True)
+    recent_position = models.CharField(max_length=50, blank=True, null=True)
+    languages = models.CharField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        db_table = 'mentor'
+
+class mentorRegistrationData(models.Model):
+    mentor_id = models.AutoField(primary_key=True)
+    why_mentor = models.CharField(max_length=5, blank=True, null=True)
+    brief_summary = models.CharField(max_length=250, blank=True, null=True)
+    diff_situation = models.CharField(max_length=250, blank=True, null=True)
+    min_commit = models.CharField(max_length=250, blank=True, null=True)
+    min_avail = models.CharField(max_length=250, blank=True, null=True)
+    mentor_training = models.CharField(max_length=250, blank=True, null=True)
+    group_meetings = models.CharField(max_length=250, blank=True, null=True)
+    any_else = models.CharField(max_length=5, blank=True, null=True)
+    
+    class Meta:
+        db_table = 'mentor_reg_data'
 
