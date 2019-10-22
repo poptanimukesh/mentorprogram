@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
 from .models import menteeData, menteeRegistrationData, mentorData, mentorRegistrationData
 
 @csrf_exempt
@@ -30,6 +31,13 @@ def mentee_registration(request):
         
         mData.save()
         mRegData.save()
+        send_mail(
+            'Registration Successful!!!',
+            'Thanks for registring with 50/50 Leadership Organisation as a Mentee. You will be notifited immediately as soon as a Mentor match occurs.\n\n\n\n\n\n\n Thanks & Regards,\n 50/50 Leadership Organization.',
+            'leshwar4@gmail.com',
+            ['leshwar4@gmail.com'],
+            fail_silently=False
+        )
 
     template = loader.get_template('mentee_registration.html')
     context = {}

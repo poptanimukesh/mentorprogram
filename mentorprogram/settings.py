@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
 
@@ -121,6 +122,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Setting Email Settings.
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'leshwar4@gmail.com'
+EMAIL_HOST_PASSWORD = 'hiker!@#$'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 
 # Static files (CSS, JavaScript, Images)
