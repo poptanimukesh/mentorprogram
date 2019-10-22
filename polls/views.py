@@ -4,6 +4,7 @@ from .models import MenteeData, MentorData, MentorMenteeAssoc
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 
+
 @csrf_exempt
 def index(request):
     # t = MenteeData.objects.get(mentee_id=1000)
@@ -64,9 +65,49 @@ def trainingPhases(request):
         }
         return HttpResponse(template.render(context, request))
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+@csrf_exempt
+def viewAssociations(request):
+    if request.method == "POST":
+        mentorId = request.POST['mentor_id']
+        menteeId = request.POST['mentee_id']
 
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+        mentorObj = MentorData.objects.get(mentor_id = mentorId)
+        mentorObj.isavailable = '\x01'
+        mentorObj.save()
+
+        menteeObj = MenteeData.objects.get(mentee_id = menteeId)
+        menteeObj.isavailable = '\x01'
+        menteeObj.save()
+
+        assoc = MentorMenteeAssoc.objects.all().filter(mentor_id = mentorId, mentee_id = menteeId)
+        assoc.delete()
+        return HttpResponse("SUCCESS")
+    else:
+        assoc_list = MentorMenteeAssoc.objects.all()
+
+        assoc_mentor_list = []
+        assoc_mentee_list = []
+
+        for assoc in assoc_list:
+            assoc_mentor_list.append(assoc.mentor_id)
+            assoc_mentee_list.append(assoc.mentee_id)
+
+        mentor_data = MentorData.objects.all().filter(mentor_id__in = assoc_mentor_list)
+        mentee_data = MenteeData.objects.all().filter(mentee_id__in = assoc_mentee_list)
+
+        mentor_map = dict() #{id -> name}
+        mentee_map = dict() #{id -> name}
+
+        for mentor in mentor_data:
+            mentor_map[mentor.mentor_id] = mentor.firstname + ' ' + mentor.lastname
+
+        for mentee in mentee_data:
+            mentee_map[mentee.mentee_id] = mentee.firstname + ' ' + mentee.lastname
+
+        template = loader.get_template('listAssociations.html')
+        context = {
+            'assoc_list': assoc_list,
+            'mentor_map': mentor_map,
+            'mentee_map': mentee_map,
+        }
+        return HttpResponse(template.render(context, request))
