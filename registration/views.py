@@ -42,6 +42,14 @@ def mentee_registration(request):
         
         mRegData.save()
 
+        send_mail(
+            'Registration Successful!',
+            'Hi, \n You have Successfully registered with 50/50 Leadership organization. \n Our team will get back to you once we have verified your details. \n Thanks and Regards, \n 50/50 Leadership organization.',
+            'leshwar4@gmail.com',
+            ['poptani@usc.edu'],
+            fail_silently=False,
+        )
+
         template = loader.get_template('registration_success.html')
         context = {}
         return HttpResponse(template.render(context, request))
@@ -60,7 +68,6 @@ def mentor_registration(request):
         #Storing Mentor Personal Details
         mData.firstname = request.POST.get('firstname')
         mData.lastname = request.POST.get('lastname')
-        mData.date = request.POST.get('date')
         mData.street_address = request.POST.get('street_address')
         mData.city_state_zip = request.POST.get('city_state_zip')
         mData.phonenumber = request.POST.get('phone')
@@ -93,6 +100,14 @@ def mentor_registration(request):
         mRegData.any_else = request.POST.get('details_8')
         
         mRegData.save()
+
+        send_mail(
+            'Registration Successful!',
+            'Hi, \n You have Successfully registered with 50/50 Leadership organization. \n Our team will get back to you once we have verified your details. \n Thanks and Regards, \n 50/50 Leadership organization.',
+            'leshwar4@gmail.com',
+            ['poptani@usc.edu'],
+            fail_silently=False,
+        )
 
         template = loader.get_template('registration_success.html')
         context = {}
