@@ -17,7 +17,7 @@ body {
 .md-stepper-horizontal .md-step {
     display:table-cell;
     position:relative;
-    padding:24px;
+    padding:20px;
 }
 .md-stepper-horizontal .md-step:hover,
 .md-stepper-horizontal .md-step:active {
@@ -83,7 +83,6 @@ body {
     content: "\f040";
 }
 .md-stepper-horizontal .md-step .md-step-title {
-    margin-top:16px;
     font-size:16px;
     font-weight:600;
 }
@@ -116,10 +115,10 @@ body {
 .md-stepper-horizontal .md-step .md-step-bar-right {
     right:0;
     left:50%;
-    margin-left:20px;
+    margin-left:15px;
 }
 .md-stepper-horizontal .md-step .md-step-bar-left {
     left:0;
     right:50%;
-    margin-right:20px;
+    margin-right:15px;
 }

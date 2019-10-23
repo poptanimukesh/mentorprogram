@@ -7,10 +7,13 @@ from datetime import datetime
 
 @csrf_exempt
 def index(request):
-    # t = MenteeData.objects.get(mentee_id=1000)
-    # t.firstname = 'Mike'  # change field
-    # t.save() # this will update only
+    template = loader.get_template('home.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
 
+@csrf_exempt
+def associate(request):
     if request.method == "POST":
     	print(request.POST['mentee_id'])
     	mentorId = request.POST['mentor_id']
@@ -37,7 +40,7 @@ def index(request):
 	    # output.append("Mentee, Mentor<br/>");
 	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
 
-	    template = loader.get_template('index.html')
+	    template = loader.get_template('associate.html')
 	    context = {
 	        'mentee_list': mentee_list,
 	        'mentor_list': mentor_list,
