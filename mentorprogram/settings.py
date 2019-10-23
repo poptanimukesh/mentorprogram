@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration.apps.RegistrationConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -75,7 +76,6 @@ WSGI_APPLICATION = 'mentorprogram.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-
 }
 
 
@@ -111,6 +111,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Setting Email Settings - Only for Dev Env. Remove this later.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True 
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_PORT = 587 
+EMAIL_HOST_USER = 'leshwar4@gmail.com'
+EMAIL_HOST_PASSWORD = 'ucbveireiuyotdhm' 
+DEFAULT_FROM_EMAIL = 'testing@gmail.com'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
