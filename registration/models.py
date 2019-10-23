@@ -1,21 +1,26 @@
 from django.db import models
 
 # Create your models here. 
-# Define Database.
+# Define Databases here.
+
+#Mentee Data Table
 class menteeData(models.Model):
     mentee_id = models.AutoField(primary_key=True)
     firstname = models.CharField(max_length=50, blank=True, null=True)
     lastname = models.CharField(max_length=50, blank=True, null=True)
     age = models.IntegerField()
-    phone = models.CharField(max_length=20, blank=True, null=True)
+    phonenumber = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
+    isActive = models.IntegerField(blank=True, null=True)
+    isAvailable = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        db_table = 'mentee'
-        
+        db_table = 'mentee_data'
+
+#Mentee Registration Table
 class menteeRegistrationData(models.Model):
-    mentee_id = models.AutoField(primary_key=True)
+    mentee_id = models.IntegerField(primary_key=True)
     comm_plat = models.CharField(max_length=5, blank=True, null=True)
     desire_dream = models.CharField(max_length=250, blank=True, null=True)
     have_mentor = models.CharField(max_length=250, blank=True, null=True)
@@ -28,7 +33,8 @@ class menteeRegistrationData(models.Model):
     
     class Meta:
         db_table = 'mentee_reg_data'
-        
+
+#Mentor Data Table
 class mentorData(models.Model):
     mentor_id = models.AutoField(primary_key=True)
     firstname = models.CharField(max_length=50, blank=True, null=True)
@@ -36,20 +42,22 @@ class mentorData(models.Model):
     date = models.DateTimeField()
     street_address = models.CharField(max_length=100, blank=True, null=True)
     city_state_zip = models.CharField(max_length=150, blank=True, null=True)
-    phone = models.CharField(max_length=20, blank=True, null=True)
-    phone_alter = models.CharField(max_length=20, blank=True, null=True)
+    phonenumber = models.CharField(max_length=20, blank=True, null=True)
+    phonenumber_alter = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=50, blank=True, null=True)
-    date_of_birth = models.DateTimeField()
+    dob = models.DateTimeField()
     pref_contact = models.CharField(max_length=10, blank=True, null=True)
     recent_employer = models.CharField(max_length=50, blank=True, null=True)
     recent_position = models.CharField(max_length=50, blank=True, null=True)
     languages = models.CharField(max_length=200, blank=True, null=True)
+    isActive = models.IntegerField(blank=True, null=True)
+    isAvailable = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        db_table = 'mentor'
+        db_table = 'mentor_data'
 
 class mentorRegistrationData(models.Model):
-    mentor_id = models.AutoField(primary_key=True)
+    mentor_id = models.IntegerField(primary_key=True)
     why_mentor = models.CharField(max_length=5, blank=True, null=True)
     brief_summary = models.CharField(max_length=250, blank=True, null=True)
     diff_situation = models.CharField(max_length=250, blank=True, null=True)

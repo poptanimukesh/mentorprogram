@@ -1,0 +1,10 @@
+ALTER TABLE mentee_data ADD COLUMN age INT AFTER lastname;
+ALTER TABLE mentee_data ADD COLUMN city VARCHAR(100) AFTER email;
+ALTER TABLE mentor_data ADD COLUMN date DATETIME NOT NULL AFTER lastname;
+ALTER TABLE mentor_data CHANGE address street_address VARCHAR(150);
+ALTER TABLE mentor_data CHANGE phonenumber phone VARCHAR(20);
+ALTER TABLE mentor_data ADD COLUMN phonenumber_alter VARCHAR(20) AFTER phonenumber;
+ALTER TABLE mentor_data ADD COLUMN pref_contact VARCHAR(10) AFTER dob;
+ALTER TABLE mentor_data ADD COLUMN recent_employer VARCHAR(100) AFTER pref_contact;
+ALTER TABLE mentor_data ADD COLUMN recent_position VARCHAR(100) AFTER recent_employer;
+ALTER TABLE mentor_data ADD COLUMN languages VARCHAR(100) AFTER recent_position;

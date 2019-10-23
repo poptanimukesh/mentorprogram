@@ -9,16 +9,27 @@ def mentee_registration(request):
     if request.method == 'POST':
         mData = menteeData()
         mRegData = menteeRegistrationData()
+        mentee_auto_id = 0
 
         #Storing Mentee Personal Details
         mData.firstname = request.POST.get('firstname')
         mData.lastname = request.POST.get('lastname')
         mData.age = request.POST.get('age')
-        mData.phone = request.POST.get('phone')
+        mData.phonenumber = request.POST.get('phone')
         mData.email = request.POST.get('email')
         mData.city = request.POST.get('city')
+        mData.isActive = 1
+        mData.isAvailable = 1
+        
+        mData.save()
+
+        #Fetching Primary Key and setting Foreign Key
+        phonenumber = request.POST.get('phone')
+        for rows in menteeData.objects.raw('SELECT mentee_id FROM mentee_data WHERE phonenumber = %s  LIMIT 1', [phonenumber]):
+            mentee_auto_id = rows.mentee_id
 
         #Storing Mentee Other Registration 
+        mRegData.mentee_id = mentee_auto_id
         mRegData.comm_plat = request.POST.get('platform_yes_no')
         mRegData.desire_dream = request.POST.get('details_1')
         mRegData.have_mentor = request.POST.get('details_2')
@@ -29,15 +40,11 @@ def mentee_registration(request):
         mRegData.race_req = request.POST.get('mentor_race')
         mRegData.race_details = request.POST.get('mentor_race_details')
         
-        mData.save()
         mRegData.save()
-        send_mail(
-            'Registration Successful!!!',
-            'Thanks for registring with 50/50 Leadership Organisation as a Mentee. You will be notifited immediately as soon as a Mentor match occurs.\n\n\n\n\n\n\n Thanks & Regards,\n 50/50 Leadership Organization.',
-            'leshwar4@gmail.com',
-            ['leshwar4@gmail.com'],
-            fail_silently=False
-        )
+
+        template = loader.get_template('registration_success.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
 
     template = loader.get_template('mentee_registration.html')
     context = {}
@@ -48,6 +55,7 @@ def mentor_registration(request):
     if request.method == 'POST':
         mData = mentorData()
         mRegData = mentorRegistrationData()
+        mentor_auto_id = 0
 
         #Storing Mentor Personal Details
         mData.firstname = request.POST.get('firstname')
@@ -55,16 +63,26 @@ def mentor_registration(request):
         mData.date = request.POST.get('date')
         mData.street_address = request.POST.get('street_address')
         mData.city_state_zip = request.POST.get('city_state_zip')
-        mData.phone = request.POST.get('phone')
-        mData.phone_alter = request.POST.get('phone_alter')
+        mData.phonenumber = request.POST.get('phone')
+        mData.phonenumber_alter = request.POST.get('phone_alter')
         mData.email = request.POST.get('email')
-        mData.date_of_birth = request.POST.get('date_of_birth')
+        mData.dob = request.POST.get('date_of_birth')
         mData.pref_contact = request.POST.get('pref_contact')
         mData.recent_employer = request.POST.get('employer')
         mData.recent_position = request.POST.get('position')
         mData.languages = request.POST.get('languages')
+        mData.isActive = 1
+        mData.isAvailable = 1
+
+        mData.save()
+        
+        #Fetching Primary Key and setting Foreign Key
+        phonenumber = request.POST.get('phone')
+        for rows in mentorData.objects.raw('SELECT mentor_id FROM mentor_data WHERE phonenumber = %s  LIMIT 1', [phonenumber]):
+            mentor_auto_id = rows.mentor_id
 
         #Storing Mentor Other Registration 
+        mRegData.mentor_id = mentor_auto_id
         mRegData.why_mentor = request.POST.get('details_1')
         mRegData.brief_summary = request.POST.get('details_2')
         mRegData.diff_situation = request.POST.get('details_3')
@@ -74,11 +92,12 @@ def mentor_registration(request):
         mRegData.group_meetings = request.POST.get('details_7')
         mRegData.any_else = request.POST.get('details_8')
         
-        
-        mData.save()
         mRegData.save()
 
+        template = loader.get_template('registration_success.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
+
     template = loader.get_template('mentor_registration.html')
-    context = {
-    }
+    context = {}
     return HttpResponse(template.render(context, request))
