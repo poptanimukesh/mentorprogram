@@ -23,4 +23,6 @@ urlpatterns = [
     path('mentorActivity/', views.mentorActivity, name='mentorActivity'),
 
     path('mentorHistory/', views.mentorHistory, name='mentorHistory'),
+
+    path('viewSubmittedMentorReport/', views.viewSubmittedMentorReport, name='viewSubmittedMentorReport'),
 ]

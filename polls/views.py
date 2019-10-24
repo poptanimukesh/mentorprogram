@@ -226,6 +226,50 @@ def viewMentors(request):
         return HttpResponse(template.render(context, request))
 
 @csrf_exempt
+def viewSubmittedMentorReport(request):
+    if request.method == "GET":
+        mentors = list()
+        associated_mentors = MentorData.objects.all().filter(isactive = 1, isavailable = 0)
+        for associated_mentor in associated_mentors:
+            current_mentor = dict()
+            current_mentor['mentor_id'] = associated_mentor.mentor_id
+            current_mentor['firstname'] = associated_mentor.firstname
+            current_mentor['lastname'] = associated_mentor.lastname
+            mentors.append(current_mentor)
+
+        template = loader.get_template('viewSubmittedMentorReport.html')
+        context = {
+            'mentors': mentors
+        }
+        print(mentors)
+        return HttpResponse(template.render(context, request))
+    else:
+        mentorId = request.POST['mentor_id']
+        print(request.POST['start_range'])
+        start_range = datetime.strptime(request.POST['start_range'] + '-01', '%Y-%m-%d')
+        end_range = datetime.strptime(request.POST['end_range'] + '-31', '%Y-%m-%d')
+        mentor_history = list()
+        activity_summaries = ActivitySummary.objects.all().order_by('-submission_date').filter(mentor_id = mentorId, 
+            submission_date__gte = start_range, submission_date__lte = end_range)
+        for activity_summary in activity_summaries:
+            print(activity_summary)
+            current_activity = dict()
+            current_activity['month'] = calendar.month_name[activity_summary.submission_date.month]
+            current_activity['year'] = activity_summary.submission_date.year
+            current_activity['collapse_mentor'] = '#collapse_' + str(activity_summary.report_id)
+            current_activity['aria_mentor'] = 'collapse_' + str(activity_summary.report_id)
+            current_activity['activity_summary'] = model_to_dict(activity_summary)
+            current_activity['activity_summary']['submission_date'] = current_activity['activity_summary']['submission_date'].strftime("%Y-%m-%d")
+            activities = [model_to_dict(activity) for activity in ActivityList.objects.all().filter(report_id = activity_summary.report_id)]
+            for activity in activities:
+                activity['date'] = activity['date'].strftime("%Y-%m-%d")
+
+            current_activity['activities'] = activities;
+            mentor_history.append(current_activity)
+
+        return HttpResponse(json.dumps(mentor_history))
+
+@csrf_exempt
 def mentorDetails(request,id):
     if request.method == "POST":
         mentorID = id

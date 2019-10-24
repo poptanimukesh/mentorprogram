@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Mentor: Report History</title>
+  </head>
+   {% load static %}
+   <body>
+      <div class="container">
+        <div class="row jumbotron" style="display: flex;">
+          <form id = 'searchForm' style="width: 100%">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="inputState">Mentor Name</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                  {% if mentors %}
+                    {% for mentor in mentors %}
+                      <option id = {{ mentor.mentor_id }} value= {{ mentor.mentor_id }}>
+                        {{mentor.firstname}} {{mentor.lastname}}
+                      </option>
+                    {% endfor %}
+                  {% endif %}
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputState">Start Range</label>
+                <input id="start_range" class="form-control" type="month" name="start_range">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputState">End Range</label>
+                <input id="end_range" class="form-control" type="month" name="end_range">
+              </div>
+              <div class="form-group col-sm-3" style="align-items: center;text-align: center">
+                <label for="submit">&nbsp;</label>
+                <a id="submit" class="form-control btn btn-default read-more control" style="background:#3399ff;color:white">Submit</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id = "demo">
+        </div>
+      </div>
+    </body>
+
+  {% block staticfiles %}
+  <script rel="stylesheet" src="{% static 'js/mentorReportHistory.js' %}"></script> 
+  {% endblock %}
+</html>
