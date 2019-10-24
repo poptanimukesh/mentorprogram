@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import MenteeData, MentorData, MentorMenteeAssoc, ActivitySummary, ActivityList
+from .models import MenteeData, MentorData, MentorMenteeAssoc, MenteeRegistrationData, MentorRegistrationData,  ActivitySummary, ActivityList
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 import calendar
@@ -84,7 +84,6 @@ def mentorActivity(request):
 ''' Checks if a Mentor has any past incomplete reports.
    Input: Mentor Id
 '''
-
 def getPastIncompleteReports(mentorId):
     assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
     incomplete_records = list()
