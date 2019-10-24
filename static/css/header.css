@@ -1,0 +1,27 @@
+.style45 {
+    font-size: 70px;
+    color: #000000;
+}
+
+#navmenu .nav-item {
+    border-right: 1px solid #dadada;
+}
+
+#navmenu .nav-link {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#navmenu {
+    padding: 0;
+    margin-bottom: 12px;
+}
+
+#navmenu .nav-item .active {
+    border-bottom: 3px solid #0384b4 !important;
+}
+
+#navmenu li:hover {
+    background-color: #e2e6ef;
+    text-decoration: none;
+}

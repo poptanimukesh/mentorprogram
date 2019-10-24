@@ -1,17 +1,18 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import MenteeData, MentorData, MentorMenteeAssoc, ActivitySummary, ActivityList
+
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
-import json
-import calendar
 
 @csrf_exempt
 def index(request):
-    # t = MenteeData.objects.get(mentee_id=1000)
-    # t.firstname = 'Mike'  # change field
-    # t.save() # this will update only
+    template = loader.get_template('home.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
 
+@csrf_exempt
+def associate(request):
     if request.method == "POST":
     	print(request.POST['mentee_id'])
     	mentorId = request.POST['mentor_id']
@@ -38,7 +39,7 @@ def index(request):
 	    # output.append("Mentee, Mentor<br/>");
 	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
 
-	    template = loader.get_template('index.html')
+	    template = loader.get_template('associate.html')
 	    context = {
 	        'mentee_list': mentee_list,
 	        'mentor_list': mentor_list,
@@ -174,5 +175,103 @@ def viewAssociations(request):
             'assoc_list': assoc_list,
             'mentor_map': mentor_map,
             'mentee_map': mentee_map,
+        }
+        return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def viewMentors(request):
+    if request.method == "POST":
+        mentorId = request.POST['mentor_id']
+
+        mentorObj = MentorData.objects.get(mentor_id = mentorId)
+        mentorObj.isactive = '\x00'
+        mentorObj.save()
+
+        return HttpResponse("SUCCESS")
+    else:
+        mentor_list = MentorData.objects.all().filter(isactive = 1)
+
+        template = loader.get_template('listMentors.html')
+        context = {
+            'mentor_list': mentor_list,
+        }
+        return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def mentorDetails(request,id):
+    if request.method == "POST":
+        mentorID = id
+        mentorObj = MentorData.objects.get( mentor_id = mentorID)
+        mentorObj.email = request.POST.get('email')
+        mentorObj.phone = request.POST.get('phone')
+
+        mentorObj.save()
+
+        # All Mentors Redirect
+        mentor_list = MentorData.objects.all().filter(isactive = 1)
+
+        template = loader.get_template('listMentors.html')
+        context = {
+            'mentor_list': mentor_list,
+        }
+        return HttpResponse(template.render(context, request))
+    else:
+        mentor_data = MentorData.objects.all().filter(mentor_id = id)
+        mentor_reg_data = MentorRegistrationData.objects.all().filter(mentor_id = id)
+
+        template = loader.get_template('mentorDetails.html')
+        context = {
+            'mentor_data': mentor_data,
+            'mentor_reg_data': mentor_reg_data
+        }
+        return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def viewMentees(request):
+    if request.method == "POST":
+        menteeId = request.POST['mentee_id']
+
+        menteeObj = MenteeData.objects.get(mentee_id = menteeId)
+        menteeObj.isactive = '\x00'
+        menteeObj.save()
+        
+        return HttpResponse("SUCCESS")
+    else:
+        mentee_list = MenteeData.objects.all().filter(isactive = 1)
+        print(mentee_list)
+
+        template = loader.get_template('listMentees.html')
+        context = {
+            'mentee_list': mentee_list
+        }
+        return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def menteeDetails(request,id):
+    if request.method == "POST":
+        menteeID = id
+        menteeData = MenteeData.objects.get( mentee_id = menteeID)
+        menteeData.email = request.POST.get('email')
+        menteeData.phone = request.POST.get('phone')
+        menteeData.save()
+
+        # All Mentees Redirect
+        mentee_list = MenteeData.objects.all().filter(isactive = 1)
+        print(mentee_list)
+
+        template = loader.get_template('listMentees.html')
+        context = {
+            'mentee_list': mentee_list
+        }
+        return HttpResponse(template.render(context, request))
+
+    else:
+        mentee_data = MenteeData.objects.all().filter(mentee_id = id)
+        mentee_reg_data = MenteeRegistrationData.objects.all().filter(mentee_id = id)
+
+        template = loader.get_template('menteeDetails.html')
+        context = {
+            'mentee_data': mentee_data,
+            'mentee_reg_data' : mentee_reg_data
         }
         return HttpResponse(template.render(context, request))
