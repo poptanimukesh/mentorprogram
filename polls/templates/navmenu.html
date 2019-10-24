@@ -1,13 +1,45 @@
-<nav id="navmenu" class="navbar navbar-expand-sm bg-light navbar-light">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a id="home" class="nav-link" href="/polls/">Home</a>
-    </li>
-    <li class="nav-item">
-      <a id="associate" class="nav-link" href="/polls/associate">Associate</a>
-    </li>
-    <li class="nav-item">
-      <a id="training-phases" class="nav-link" href="/polls/trainingPhases">Training Phases</a>
-    </li>
-  </ul>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" id="home">
+        <a class="nav-link" href="/polls/">Home</a>
+      </li>
+      <li class="nav-item" id="associate">
+        <a class="nav-link" href="/polls/associate">Associate</a>
+      </li>
+      <li class="nav-item" id="view-associations">
+        <a class="nav-link" href="/polls/viewAssociations">View Associations</a>
+      </li>
+      <li class="nav-item" id="training-phases">
+        <a class="nav-link" href="/polls/trainingPhases">Update Training Phases</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">View User</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">View Mentors</a>
+          <a class="dropdown-item" href="#">View Mentees</a>
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
 </nav>
+<!--/.Navbar-->

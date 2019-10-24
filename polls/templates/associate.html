@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" media="all" />
-<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" type="text/css" media="all" />
-<link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
-
-{% load static %}
-{% block CSS %}
-  <link rel="stylesheet" href="{% static 'css/header.css' %}">
-{% endblock %}
-</head>
+{% include "header.html" %}
 
 <body>
-    {% include "header.html" %}
-
     <div class="container">
         {% include "navmenu.html" %}
         <div class="row">
@@ -35,7 +24,7 @@
     		                        </tr>
                             	{% endfor %}
                             {% else %}
-                            	<tr>
+                            	<tr colspan="2">
     	                            <td><p>No mentor are available.</p></td>
     	                        </tr>
     						{% endif %}
@@ -61,7 +50,7 @@
     		                        </tr>
                             	{% endfor %}
                             {% else %}
-                            	<tr>
+                            	<tr colspan="2">
     	                            <td><p>No mentee are available.</p></td>
     	                        </tr>
     						{% endif %}
@@ -79,10 +68,7 @@
 </body>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+{% include "commonJS.html" %}
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -105,7 +91,7 @@
 	    var search_word = $("#search").val();
 	    $.ajax({
 	      type: "POST",
-	      url: {% url 'index' %},
+	      url: '/polls/associate',
 	      data: {mentor_id: $('#mentor-list').DataTable().rows({ selected: true }).data()[0][0],
 	      		mentee_id: $('#mentee-list').DataTable().rows({ selected: true }).data()[0][0]},
 	      success: function(result){
