@@ -90,10 +90,11 @@ class MentorMenteeAssoc(models.Model):
 class ActivityList(models.Model):
     activity_id = models.AutoField(primary_key=True)
     activity_type = models.CharField(max_length=50, blank=True, null=True)
-    iskept = models.TextField(db_column='isKept', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    iskept = models.CharField(db_column='isKept', max_length=10, blank=True, null=True)  # Field name made lowercase.
     duration = models.CharField(max_length=10, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
     report_id = models.CharField(max_length=45)
+    date = models.DateField()
 
     class Meta:
         managed = False
@@ -105,7 +106,7 @@ class ActivitySummary(models.Model):
     mentor_id = models.IntegerField()
     mentee_id = models.IntegerField()
     submission_date = models.DateField(blank=True, null=True)
-    callattended = models.TextField(db_column='callAttended', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    callattended = models.CharField(db_column='callAttended', max_length=10, blank=True, null=True)  # Field name made lowercase.
     report_id = models.CharField(unique=True, max_length=45)
 
     class Meta:

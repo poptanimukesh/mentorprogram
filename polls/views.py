@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 import calendar
 import json
+from django.forms.models import model_to_dict
 
 @csrf_exempt
 def index(request):
@@ -66,20 +67,22 @@ def mentorActivity(request):
         mentor_id = response['mentorId']
         if ActivitySummary.objects.filter(mentor_id = response['mentorId'], submission_date = response['yearSelected']).count() > 0:
             return HttpResponse("Already Submitted")
-        call_attended = 0
+        call_attended = 'NO'
         if response['callAttended']:
-            call_attended = 1
+            call_attended = 'YES'
         report_id = str(mentor_id) + '_' + response['yearSelected']
         activity_summary = ActivitySummary(mentor_id=mentor_id, mentee_id=1, report_id = report_id, submission_date=response['yearSelected'], callattended=call_attended)
         activity_summary.save()
+        print(response)
         while 'activity' + str(idx) in response:
-            print('ACTIVITY' + str(idx), response['activity' + str(idx)])
             if response['activity' + str(idx)] != '':
-                k = 0
+                k = 'NOT KEPT'
                 if 'kept' + str(idx) in response:
-                    k = 1
+                    k = 'KEPT'
+                print("KEPT", k)
                 aList = ActivityList(activity_type=response['activity' + str(idx)], iskept=k
-                    , duration=response['duration'+str(idx)], comments=response['comments'+str(idx)], report_id = report_id)
+                    , duration=response['duration'+str(idx)], comments=response['comments'+str(idx)], 
+                    report_id = report_id, date = response['date_picker' + str(idx)])
                 aList.save()
             idx = idx + 1
         return HttpResponse("SUCCESS")
@@ -114,19 +117,32 @@ def getPastIncompleteReports(mentorId):
 
 @csrf_exempt
 def mentorHistory(request):
+    mentor_id = 1005
+    mentor_history = list()
+    assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentor_id, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())[0]
+    start_date = assoc.match_date.replace(day=1)
+    activity_summaries = ActivitySummary.objects.all().order_by('-submission_date').filter(mentor_id = mentor_id, submission_date__gte = start_date, submission_date__lte = datetime.now())
+    for activity_summary in activity_summaries:
+        current_activity = dict()
+        current_activity['month'] = calendar.month_name[activity_summary.submission_date.month]
+        current_activity['year'] = activity_summary.submission_date.year
+        current_activity['collapse_mentor'] = '#collapse_' + str(activity_summary.report_id)
+        current_activity['aria_mentor'] = 'collapse_' + str(activity_summary.report_id)
+        current_activity['activity_summary'] = model_to_dict(activity_summary)
+        activities = [model_to_dict(activity) for activity in ActivityList.objects.all().filter(report_id = activity_summary.report_id)]
+        current_activity['activities'] = activities;
+        mentor_history.append(current_activity)
 
     template = loader.get_template('mentorHistory.html')
     context = {
-
-      }
+      'mentor_history': mentor_history
+    }
     return HttpResponse(template.render(context, request))  
-
 
 @csrf_exempt
 def trainingPhases(request):
     if request.method == "POST":
         mentorId = request.POST['mentor_id']
-
         mentorObj = MentorData.objects.get(mentor_id = mentorId)
         mentorObj.trainingphases = request.POST['trainingphases']
         mentorObj.save()
