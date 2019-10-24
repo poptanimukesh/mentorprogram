@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.template import loader
-
+from .models import MenteeData, MentorData, MentorMenteeAssoc, ActivitySummary, ActivityList
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+import calendar
 
 @csrf_exempt
 def index(request):
@@ -49,9 +50,12 @@ def associate(request):
 @csrf_exempt
 def mentorActivity(request):
     if request.method == 'GET':
+        mentorId = 1005
+        incomplete_records = getPastIncompleteReports(mentorId)
         template = loader.get_template('mentorActivity.html')
         # logic to fetch from DB
         context = {
+        'incomplete_records' : incomplete_records
 
         }
         return HttpResponse(template.render(context, request))
@@ -80,9 +84,8 @@ def mentorActivity(request):
 ''' Checks if a Mentor has any past incomplete reports.
    Input: Mentor Id
 '''
-@csrf_exempt
-def getPastIncompleteReports(request):
-    mentorId = request.GET['mentorId']
+
+def getPastIncompleteReports(mentorId):
     assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
     incomplete_records = list()
     if len(assoc) > 0:
@@ -104,11 +107,8 @@ def getPastIncompleteReports(request):
             else:
                 month += 1
             startMonth = str(month) + '-' + str(year)
-    template = loader.get_template('mentorActivity.html')
-    context = {
-        'incomplete_records': incomplete_records,
-    }
-    return HttpResponse(template.render(context, request))
+    print('LIST', incomplete_records)
+    return incomplete_records
 
 @csrf_exempt
 def trainingPhases(request):

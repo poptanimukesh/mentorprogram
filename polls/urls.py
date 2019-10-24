@@ -12,5 +12,6 @@ urlpatterns = [
 
     path('viewAssociations', views.viewAssociations, name='viewAssociations'),
 
+    path('mentorActivity/', views.mentorActivity, name='mentorActivity'),
 
 ]
