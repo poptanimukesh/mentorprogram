@@ -1,88 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" media="all" />
-<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" type="text/css" media="all" />
-<link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
-
+{% include "header.html" %}
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600'>
-{% load static %}
-{% block CSS %}
-  <link rel="stylesheet" href="{% static 'css/stepper.css' %}">
-  <link rel="stylesheet" href="{% static 'css/header.css' %}">
-{% endblock %}
 
+<style type="text/css">
+  #mentor-list td {
+    padding: 0.35rem;
+  }
 
-</head>
+</style>
 
 <body>
-    {% include "header.html" %}
-
     <div class="container">
         {% include "navmenu.html" %}
         <div class="row">
 
           <div class="col-sm-12">
+              {% if mentor_list %}
                 <table id="mentor-list" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Mentor Id</th>
-                                <th>Mentor Name</th>
-                                <th>Training Phases</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% if mentor_list %}
-                                {% for m in mentor_list %}
-                                    <tr id='{{ m.mentor_id }}'>
-                                        <td style="text-align: center;vertical-align: middle;">
-                                            {{ m.mentor_id }} 
-                                        </td>
-                                        <td style="text-align: center;vertical-align: middle;">
-                                            {{ m.firstname }} {{ m.lastname }} 
-                                        </td>
-                                        <td>
-                                            <div class="md-stepper-horizontal orange">
-                                                <div id='{{ m.mentor_id }}-0' class="md-step active" onclick="reset('{{ m.mentor_id }}')">
-                                                  <div class="md-step-circle"><span>0</span></div>
-                                                  <div class="md-step-title">Reset</div>
-                                                </div>
-                                                <div id='{{ m.mentor_id }}-1' class="md-step active {% if m.trainingphases > 0 %} done {% endif %}" onclick="markActivated(1,'{{ m.mentor_id }}')">
-                                                  <div class="md-step-circle" style="{% if m.trainingphases > 0 %} background-color: green; {% endif %}"><span>1</span></div>
-                                                  <div class="md-step-title">Step 1</div>
-                                                  <div class="md-step-bar-right"></div>
-                                                </div>
-                                                <div id='{{ m.mentor_id }}-2' class="md-step active {% if m.trainingphases > 1 %} done {% endif %}" onclick="markActivated(2,'{{ m.mentor_id }}')">
-                                                  <div class="md-step-circle" style="{% if m.trainingphases > 1 %} background-color: green; {% endif %}"><span>2</span></div>
-                                                  <div class="md-step-title">Step 2</div>
-                                                  <div class="md-step-bar-left"></div>
-                                                  <div class="md-step-bar-right"></div>
-                                                </div>
-                                                <div id='{{ m.mentor_id }}-3' class="md-step active {% if m.trainingphases > 2 %} done {% endif %}" onclick="markActivated(3,'{{ m.mentor_id }}')">
-                                                  <div class="md-step-circle" style="{% if m.trainingphases > 2 %} background-color: green; {% endif %}"><span>3</span></div>
-                                                  <div class="md-step-title">Step 3</div>
-                                                  <div class="md-step-bar-left"></div>
-                                                  <div class="md-step-bar-right"></div>
-                                                </div>
-                                                <div id='{{ m.mentor_id }}-4' class="md-step active" onclick="markActivated(4,'{{ m.mentor_id }}')">
-                                                  <div class="md-step-circle"><span>4</span></div>
-                                                  <div class="md-step-title">Step 4</div>
-                                                  <div class="md-step-bar-left"></div>
-                                                  <div class="md-step-bar-right"></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td><p>No mentor are available.</p></td>
-                                </tr>
-                            {% endif %}
-                        </tbody>
+                  <thead>
+                      <tr>
+                          <th>Mentor Id</th>
+                          <th>Mentor Name</th>
+                          <th>Training Phases</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for m in mentor_list %}
+                        <tr id='{{ m.mentor_id }}'>
+                            <td style="text-align: center;vertical-align: middle;">
+                                {{ m.mentor_id }} 
+                            </td>
+                            <td style="text-align: center;vertical-align: middle;">
+                                {{ m.firstname }} {{ m.lastname }} 
+                            </td>
+                            <td>
+                                <div class="md-stepper-horizontal">
+                                    <div id='{{ m.mentor_id }}-0' class="md-step active" onclick="reset('{{ m.mentor_id }}')">
+                                      <div class="md-step-circle"><span>0</span></div>
+                                      <div class="md-step-title">Reset</div>
+                                    </div>
+                                    <div id='{{ m.mentor_id }}-1' class="md-step active {% if m.trainingphases > 0 %} done {% endif %}" onclick="markActivated(1,'{{ m.mentor_id }}')">
+                                      <div class="md-step-circle" style="{% if m.trainingphases > 0 %} background-color: green; {% endif %}"><span>1</span></div>
+                                      <div class="md-step-title">Step 1</div>
+                                      <div class="md-step-bar-right"></div>
+                                    </div>
+                                    <div id='{{ m.mentor_id }}-2' class="md-step active {% if m.trainingphases > 1 %} done {% endif %}" onclick="markActivated(2,'{{ m.mentor_id }}')">
+                                      <div class="md-step-circle" style="{% if m.trainingphases > 1 %} background-color: green; {% endif %}"><span>2</span></div>
+                                      <div class="md-step-title">Step 2</div>
+                                      <div class="md-step-bar-left"></div>
+                                      <div class="md-step-bar-right"></div>
+                                    </div>
+                                    <div id='{{ m.mentor_id }}-3' class="md-step active {% if m.trainingphases > 2 %} done {% endif %}" onclick="markActivated(3,'{{ m.mentor_id }}')">
+                                      <div class="md-step-circle" style="{% if m.trainingphases > 2 %} background-color: green; {% endif %}"><span>3</span></div>
+                                      <div class="md-step-title">Step 3</div>
+                                      <div class="md-step-bar-left"></div>
+                                      <div class="md-step-bar-right"></div>
+                                    </div>
+                                    <div id='{{ m.mentor_id }}-4' class="md-step active" onclick="markActivated(4,'{{ m.mentor_id }}')">
+                                      <div class="md-step-circle"><span>4</span></div>
+                                      <div class="md-step-title">Step 4</div>
+                                      <div class="md-step-bar-left"></div>
+                                      <div class="md-step-bar-right"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
                 </table>
+                {% else %}
+                    <div class="row">
+                        <p>No mentor are available.</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -90,10 +82,7 @@
 </body>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+{% include "commonJS.html" %}
 
 <script type="text/javascript">
     $(document).ready(function() {

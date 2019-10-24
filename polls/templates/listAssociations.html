@@ -2,13 +2,15 @@
 <html>
 <head>
 
-<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all" />
-
-<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" type="text/css" media="all" />
-
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" media="all" />
+<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" type="text/css" media="all" />
 <link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% load static %}
+{% block CSS %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+{% endblock %}
 
 <style type="text/css">
     .style45 {
@@ -19,53 +21,43 @@
 </head>
 {%load custom_tags%}
 <body>
-    <table width="100%">
-        <tbody>
-        <tr>
-            <td height="104" align="center" valign="middle" bgcolor="#F4F4F4">
-                <span class="style45">
-                    <span class="style47">50/50 Leadership</span> 
-                    <img src="https://www.5050leadership.org/PHOTOS/LOGO.png" width="147" height="147" align="absmiddle">
-                </span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+{% include "header.html" %}
 
-<div class="tab-content">
-    <div class="row" style="margin: 10px 5% 10px 5%">
-        <table id="assoc-list" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Mentor Id</th>
-                    <th>Mentor Name</th>
-                    <th>Mentee Id</th>
-                    <th>Mentee Name</th>
-                    <th>Creation Date</th>
-                    <th>Expiry Date</th>
-                    <th>Disassociate</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if assoc_list %}
-                    {% for a in assoc_list %}
-                        <tr id="{{a.mentor_id}}_r">
-                            <td>{{ a.mentor_id }} </td>
-                            <td>{{ mentor_map|hash:a.mentor_id }}</td>
-                            <td>{{ a.mentee_id }}</td>
-                            <td>{{ mentee_map|hash:a.mentee_id }}</td>
-                            <td>{{ a.match_date }}</td>
-                            <td>{{ a.expiry_date }}</td>
-                            <td> <button type="button" class="btn btn-danger" onclick="disassociate({{ a.mentor_id }}, {{ a.mentee_id }})"><i class="fa fa-close icon"></i></button></td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
+<div class="container">
+    {% include "navmenu.html" %}
+    <div class="">
+        {% if assoc_list %}
+            <table id="assoc-list" class="table table-striped table-bordered" style="width:100%">
+                <thead>
                     <tr>
-                        <td><p>No associations.</p></td>
+                        <th>Mentor Id</th>
+                        <th>Mentor Name</th>
+                        <th>Mentee Id</th>
+                        <th>Mentee Name</th>
+                        <th>Creation Date</th>
+                        <th>Expiry Date</th>
+                        <th>Disassociate</th>
                     </tr>
-                {% endif %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                        {% for a in assoc_list %}
+                            <tr id="{{a.mentor_id}}_r">
+                                <td>{{ a.mentor_id }} </td>
+                                <td>{{ mentor_map|hash:a.mentor_id }}</td>
+                                <td>{{ a.mentee_id }}</td>
+                                <td>{{ mentee_map|hash:a.mentee_id }}</td>
+                                <td>{{ a.match_date }}</td>
+                                <td>{{ a.expiry_date }}</td>
+                                <td> <button type="button" class="btn btn-danger" onclick="disassociate('{{ a.mentor_id }}', '{{ a.mentee_id }}')"><i class="fa fa-close icon"></i></button></td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="row">
+                <p><p>No associations found</p>
+            </div>
+        {% endif %}
     </div>
 </div>
 </body>
@@ -73,12 +65,14 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#assoc-list').DataTable( {
         } );
+
+        $('#view-associations').addClass('active');
     } );
 
     function disassociate(mentor_id, mentee_id) {

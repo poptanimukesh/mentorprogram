@@ -1,10 +1,15 @@
 .style45 {
-    font-size: 70px;
+    font-size: 65px;
     color: #000000;
+}
+
+.navbar {
+    margin: 15px 0 20px 0;
 }
 
 #navmenu .nav-item {
     border-right: 1px solid #dadada;
+    font-size: 20px;
 }
 
 #navmenu .nav-link {

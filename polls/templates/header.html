@@ -1,12 +1,34 @@
-<table width="100%">
-        <tbody>
-        <tr>
-            <td height="104" align="center" valign="middle" bgcolor="#F4F4F4">
-                <span class="style45">
-                    <span class="style47">50/50 Leadership</span> 
-                    <img src="https://www.5050leadership.org/PHOTOS/LOGO.png" width="147" height="147" align="absmiddle">
-                </span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<head>
+
+{% load static %}
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" media="all" />
+<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" type="text/css" media="all" />
+<link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+
+{% block CSS %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/stepper.css' %}">
+{% endblock %}
+</head>
+
+
+<div class="row" style="background-color: #F4F4F4;">
+    <div class="col-sm-3"> </div>
+    <div class="col-sm-6">
+        <span class="style45">
+            <span class="style47">50/50 Leadership</span> 
+            <img src="https://www.5050leadership.org/PHOTOS/LOGO.png" width="125" height="125" align="absmiddle">
+        </span>
+    </div>
+    <div class="col-sm-3" style="margin: auto;"> 
+        <div>Welcome, Pauline Field</div>
+        <div><a href="#">Profile Information</a></div>
+        <div><button type="button" class="btn btn-primary">Logout</button></div>
+    </div>
+</div>
