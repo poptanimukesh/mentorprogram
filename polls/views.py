@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import MenteeData, MentorData, MentorMenteeAssoc
+from .models import MenteeData, MentorData, MentorMenteeAssoc, ActivitySummary, ActivityList
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
-
+import json
+import calendar
 
 @csrf_exempt
 def index(request):
@@ -57,18 +58,56 @@ def mentorActivity(request):
         body_unicode = request.body.decode('utf-8')
         idx = 1
         response = json.loads(body_unicode)
-        while 'activity'+str(idx) in response:
-            k = 0
-            if response['kept1'] == 'kept':
-                k = 1
-            aSummary = ActivitySummary(mentor_id=1, mentee_id=1, submission_date=datetime.now(), callattended=1)
-            aSummary.save()
-            aList = ActivityList(activity_id=aSummary.activity_id, activity_type=response['activity1'], iskept=k
-                , duration=response['duration1'], comments=response['comments1'])
-            aList.save()
+        print(response)
+        if ActivitySummary.objects.filter(mentor_id = response['mentorId'], submission_date = response['yearSelected']).count() > 0:
+            return HttpResponse("Already Submitted")
+        while 'activity' + str(idx) in response:
+            print('ACTIVITY' + str(idx), response['activity' + str(idx)])
+            if response['activity' + str(idx)] != '':
+                k = 0
+                if 'kept' + str(idx) in response:
+                    k = 1
+                aSummary = ActivitySummary(mentor_id=1005, mentee_id=1, submission_date=response['yearSelected'], callattended=1)
+                aSummary.save()
+                aList = ActivityList(activity_id=aSummary.activity_id, activity_type=response['activity' + str(idx)], iskept=k
+                    , duration=response['duration'+str(idx)], comments=response['comments'+str(idx)])
+                aList.save()
             idx = idx + 1
-            print(aList.activity_id)
         return HttpResponse("SUCCESS")
+
+
+''' Checks if a Mentor has any past incomplete reports.
+   Input: Mentor Id
+'''
+@csrf_exempt
+def getPastIncompleteReports(request):
+    mentorId = request.GET['mentorId']
+    assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
+    incomplete_records = list()
+    if len(assoc) > 0:
+        assoc = assoc[0]
+        startMonth = str(assoc.match_date.month) + '-' + str(assoc.match_date.year)
+        month = assoc.match_date.month
+        year = assoc.match_date.year
+        today = datetime.today()
+        endMonth = str(today.month) + '-' + str(today.year)
+        pastCompleteActivites = ActivitySummary.objects.order_by('submission_date').values_list('submission_date', flat= True).filter(mentor_id=mentorId, submission_date__gte = assoc.match_date).distinct()
+        
+        records = set([str(x.month) + '-' + str(x.year) for x in pastCompleteActivites])
+        while startMonth != endMonth:
+            if startMonth not in records:
+                incomplete_records.append(calendar.month_name[month] + '-' + str(year));
+            if month == 12:
+                month = 1
+                year += 1
+            else:
+                month += 1
+            startMonth = str(month) + '-' + str(year)
+    template = loader.get_template('mentorActivity.html')
+    context = {
+        'incomplete_records': incomplete_records,
+    }
+    return HttpResponse(template.render(context, request))
 
 @csrf_exempt
 def trainingPhases(request):

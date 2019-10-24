@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import UserManager
 
 # Create your models here.
 class MenteeData(models.Model):
@@ -61,7 +62,7 @@ class ActivitySummary(models.Model):
     mentee_id = models.IntegerField()
     submission_date = models.DateField(blank=True, null=True)
     callattended = models.TextField(db_column='callAttended', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-
+    objects = UserManager()
     class Meta:
         managed = False
         db_table = 'activity_summary'
