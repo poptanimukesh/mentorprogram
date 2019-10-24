@@ -88,15 +88,17 @@ class MentorMenteeAssoc(models.Model):
         unique_together = (('mentor_id', 'mentee_id'),)
 
 class ActivityList(models.Model):
-    activity_id = models.IntegerField()
+    activity_id = models.AutoField(primary_key=True)
     activity_type = models.CharField(max_length=50, blank=True, null=True)
     iskept = models.TextField(db_column='isKept', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     duration = models.CharField(max_length=10, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
+    report_id = models.CharField(max_length=45)
 
     class Meta:
         managed = False
         db_table = 'activity_list'
+
 
 class ActivitySummary(models.Model):
     activity_id = models.AutoField(primary_key=True)
@@ -104,7 +106,8 @@ class ActivitySummary(models.Model):
     mentee_id = models.IntegerField()
     submission_date = models.DateField(blank=True, null=True)
     callattended = models.TextField(db_column='callAttended', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    objects = UserManager()
+    report_id = models.CharField(unique=True, max_length=45)
+
     class Meta:
         managed = False
         db_table = 'activity_summary'

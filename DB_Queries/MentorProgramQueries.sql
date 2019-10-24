@@ -46,24 +46,27 @@ CREATE TABLE mentor_mentee_assoc
 );
 
 -- Activity Summary
-CREATE TABLE activity_summary    
-(activity_id int(10) NOT NULL AUTO_INCREMENT,  
- mentor_id int(10) NOT NULL REFERENCES mentor_data(mentor_id),
- mentee_id int(10) NOT NULL REFERENCES mentee_data(mentee_id), 
- submission_date date,
- callAttended bit(1),
- PRIMARY KEY (activity_id)    
-);
+CREATE TABLE `activity_summary` (
+  `activity_id` int(10) NOT NULL AUTO_INCREMENT,
+  `mentor_id` int(10) NOT NULL,
+  `mentee_id` int(10) NOT NULL,
+  `submission_date` date DEFAULT NULL,
+  `callAttended` bit(1) DEFAULT NULL,
+  `report_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`activity_id`),
+  UNIQUE KEY `report_id_UNIQUE` (`report_id`)
+)
 
 -- Activity List
-
-CREATE TABLE activity_list  
-(activity_id int(10) NOT NULL,
-activity_type varchar(50),
-isKept bit(1),
-duration varchar(10),
-comments mediumtext
-);
+CREATE TABLE `activity_list` (
+  `activity_id` int(10) NOT NULL AUTO_INCREMENT,
+  `activity_type` varchar(50) DEFAULT NULL,
+  `isKept` bit(1) DEFAULT NULL,
+  `duration` varchar(10) DEFAULT NULL,
+  `comments` mediumtext,
+  `report_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`activity_id`)
+)
 
 alter table mentee_data modify column dob date;
 
