@@ -13,6 +13,7 @@
                             <tr>
                             	<th>Mentor Id</th>
                                 <th>Mentor Name</th>
+                                <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -21,6 +22,7 @@
     		                        <tr>
     		                        	<td>{{ m.mentor_id }} </td>
     		                            <td>{{ m.firstname }} {{ m.lastname }} </td>
+                                        <td><a href="/polls/mentorDetails/{{ m.mentor_id }}"><u>View Details<u></a></td>
     		                        </tr>
                             	{% endfor %}
                             {% else %}
@@ -39,6 +41,7 @@
                             <tr>
                             	<th>Mentee Id</th>
                                 <th>Mentee Name</th>
+                                <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +50,7 @@
     		                        <tr>
     		                        	<td>{{ m.mentee_id }} </td>
     		                            <td>{{ m.firstname }} {{ m.lastname }} </td>
+                                        <td><a href="/polls/menteeDetails/{{ m.mentee_id }}"><u>View Details</u></a></td>
     		                        </tr>
                             	{% endfor %}
                             {% else %}
