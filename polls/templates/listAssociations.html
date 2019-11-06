@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" media="all" />
-<link rel="stylesheet"  href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" type="text/css" media="all" />
-<link rel="stylesheet"  href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css" media="all" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-{% load static %}
-{% block CSS %}
-  <link rel="stylesheet" href="{% static 'css/header.css' %}">
-{% endblock %}
-
-<style type="text/css">
-    .style45 {
-        font-size: 70px;
-        color: #000000;
-    }
-</style>
-</head>
 {%load custom_tags%}
-<body>
 {% include "header.html" %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
 
+<style>
+    #assoc-list td {
+        vertical-align: middle;
+    }
+
+</style>
 <div class="container">
     {% include "navmenu.html" %}
     <div class="">
@@ -48,7 +37,11 @@
                                 <td>{{ mentee_map|hash:a.mentee_id }}</td>
                                 <td>{{ a.match_date }}</td>
                                 <td>{{ a.expiry_date }}</td>
-                                <td> <button type="button" class="btn btn-danger" onclick="disassociate('{{ a.mentor_id }}', '{{ a.mentee_id }}')"><i class="fa fa-close icon"></i></button></td>
+                                <td> 
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="disassociate('{{ a.mentor_id }}', '{{ a.mentee_id }}')">
+                                        <i class="fa fa-trash fa-2x icon"></i>
+                                    </button>
+                                </td>
                             </tr>
                         {% endfor %}
                 </tbody>
@@ -63,10 +56,9 @@
 </body>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
+{% include "commonJS.html" %}
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#assoc-list').DataTable( {

@@ -4,14 +4,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"
-        media="all" />
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" type="text/css"
-        media="all" />
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap.min.css" type="text/css"
-        media="all" />
 
     <style type="text/css">
         .header {
@@ -43,18 +35,21 @@
     </style>
 </head>
 
+{% include "header.html" %}
+
 <body>
 
     <div class="container">
+        {% include "navmenu.html" %}
         {% if mentee_data %}
         <div class="text-center lead">
             <span class="lead" style="font-size: 40px; font-weight: bold;">Mentee Details</span>
         </div>
         <form class="" action="" method="POST">
             {% csrf_token %}
-            <div class="row">
+            <div class="row" style="margin-left: 0;">
                 <!-- Col1 Starts here -->
-                <div class="col-xs-6">
+                <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-12">
                             <h3>
@@ -138,29 +133,35 @@
 
                     {% for mr in mentee_reg_data %}
                     <div class="row">
-                        <div class="col-sm-9">
+                        <div class="col-sm-7">
                             <label for="communication_platform" class="lead">Are you comfortable using Skype, Zoom,
                                 or
-                                other similar platforms to communicate?</label><br>
+                                other similar platforms to communicate?</label>
                         </div>
-                        <div class="col-sm-3">
-                            <input class="custom-control-input" type="radio" name="platform_yes_no" id="platform_yes_no"
-                                value="Yes" disabled {% if mr.comm_plat == 'Yes' %} checked{% endif %}>
-                            <label class="custom-control-label lead" for="platform_yes_no">
-                                Yes
-                            </label>
-                            <input class="custom-control-input" type="radio" name="platform_yes_no" id="platform_yes_no"
-                                value="No" disabled {% if mr.comm_plat == 'No' %} checked{% endif %}>
-                            <label class="custom-control-label lead" for="platform_yes_no">
-                                No
-                            </label>
+                        <div class="col-sm-5">
+                            <div class="row" style="margin-left: 0;">
+                                <div class="col-sm-5">
+                                    <input class="custom-control-input" type="radio" name="platform_yes_no" id="platform_yes_no"
+                                        value="Yes" disabled {% if mr.comm_plat == 'Yes' %} checked{% endif %}>
+                                    <label class="custom-control-label lead" for="platform_yes_no">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input class="custom-control-input" type="radio" name="platform_yes_no" id="platform_yes_no"
+                                        value="No" disabled {% if mr.comm_plat == 'No' %} checked{% endif %}>
+                                    <label class="custom-control-label lead" for="platform_yes_no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
 
                 <!-- Col2 Starts here -->
-                <div class="col-xs-6">
+                <div class="col-sm-6">
                     <div class="col-sm-12">
                         <h3>
                             <label for="personal_details" class="">Registration Details <span
@@ -230,16 +231,22 @@
                             <label for="mentor_race" class="lead">Is it important for you to have a mentor of the
                                 same
                                 race/ethnicity? <span class="required_field">*</span></label><br>
-                            <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes"
-                                disabled {% if mr.race_req == 'Yes' %} checked{% endif %}>
-                            <label class="form-check-label lead" for="mentor_race">
-                                Yes
-                            </label>
-                            <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No"
-                                disabled {% if mr.race_req == 'No' %} checked{% endif %}>
-                            <label class="form-check-label lead" for="mentor_race">
-                                No
-                            </label>
+                                <div class="row" style="margin-left: 0;">
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="Yes"
+                                            disabled {% if mr.race_req == 'Yes' %} checked{% endif %}>
+                                        <label class="form-check-label lead" for="mentor_race">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="mentor_race" id="mentor_race" value="No"
+                                            disabled {% if mr.race_req == 'No' %} checked{% endif %}>
+                                        <label class="form-check-label lead" for="mentor_race">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
                         </div>
                     </div>
 
@@ -258,7 +265,7 @@
             <br>
             <div class="row">
                 <div class="col-sm-4"></div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <button type="button" class="btn btn-primary" onclick="goBack()">Back</button>
                     <button type="button" id="editButton" class="btn btn-primary" onclick="editData()">Edit</button>
                     <button type="submit" id="submitButton" class="btn btn-success" disabled>Save</button>
