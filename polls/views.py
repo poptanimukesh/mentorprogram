@@ -31,8 +31,9 @@ def associate(request):
     	menteeObj.isavailable = '\x00'
     	menteeObj.save()
 
-    	assoc = MentorMenteeAssoc(mentor_id = mentorId, mentee_id = menteeId, match_date = datetime.now())
+    	assoc = MentorMenteeAssoc(mentor_id = mentorId, mentee_id = menteeId, match_date = datetime.now(), expiry_date = addYears(datetime.now(), 1))
     	print(assoc)
+        # print("new date: ", addYears(datetime.now(), 1))
     	assoc.save()
     	return HttpResponse("SUCCESS")
     else:
@@ -48,6 +49,14 @@ def associate(request):
 	        'mentor_list': mentor_list,
 	    }
 	    return HttpResponse(template.render(context, request))
+
+def addYears(d, years):
+    try:
+#Return same day of the current year        
+        return d.replace(year = d.year + years)
+    except ValueError:
+#If not same day, it will return other, i.e.  February 29 to March 1 etc.        
+        return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
 
 @csrf_exempt
 def mentorActivity(request):

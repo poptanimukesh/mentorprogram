@@ -46,7 +46,7 @@ def mentee_registration(request):
             'Registration Successful!',
             'Hi, \n You have Successfully registered with 50/50 Leadership organization. \n Our team will get back to you once we have verified your details. \n Thanks and Regards, \n 50/50 Leadership organization.',
             'leshwar4@gmail.com',
-            ['poptani@usc.edu'],
+            [request.POST.get('email')],
             fail_silently=False,
         )
 
@@ -105,7 +105,7 @@ def mentor_registration(request):
             'Registration Successful!',
             'Hi, \n You have Successfully registered with 50/50 Leadership organization. \n Our team will get back to you once we have verified your details. \n Thanks and Regards, \n 50/50 Leadership organization.',
             'leshwar4@gmail.com',
-            ['poptani@usc.edu'],
+            [request.POST.get('email')],
             fail_silently=False,
         )
 
