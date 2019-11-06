@@ -70,7 +70,7 @@ $(document).ready(function(){
     element.find('.date_picker').attr('name', 'date_picker' + size);
   });
 
-  jQuery(document).delegate('a.delete-record', 'click', function(e) {
+  jQuery(document).delegate('button.delete-record', 'click', function(e) {
     e.preventDefault();    
     var didConfirm = confirm("Are you sure You want to delete");
     if (didConfirm == true) {

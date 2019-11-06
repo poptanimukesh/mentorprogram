@@ -25,7 +25,7 @@ $(document).ready(function(){
           $.each(data,function(index,value){  //report_history
             mentor_history +='<div class="card">';
             mentor_history += '<div class="card-header" id = ' + value['activity_summary']['report_id'] + '><h2 class="mb-0">';
-            mentor_history += '<button class="btn btn-link" type="button" data-toggle="collapse" data-target=' + value['collapse_mentor'] + ' aria-expanded="true" aria-controls='+ value['aria_mentor'] + '>' + value['month'] + ' - ' + value['year'] + '</button></h2></div>';
+            mentor_history += '<button class="btn btn-link custom-btn" type="button" data-toggle="collapse" data-target=' + value['collapse_mentor'] + ' aria-expanded="true" aria-controls='+ value['aria_mentor'] + '>' + value['month'] + ' - ' + value['year'] + '</button></h2></div>';
             mentor_history += '<div id= '  + value['aria_mentor'] + ' class="collapse" aria-labelledby= ' +  value['activity_summary']['report_id'] + ' data-parent="#mentorHistoryAccordion">';
             mentor_history += '<div class="card-body"> <h5>Montly call attended: '+ value['activity_summary']['callattended'] + ' </h5>';
             mentor_history += '<table class="table table-sm table-striped"><thead><tr><th scope="col">#</th>';

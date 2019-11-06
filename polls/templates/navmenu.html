@@ -12,26 +12,29 @@
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" id="home">
+      <!-- <li class="nav-item" id="home">
         <a class="nav-link" href="/polls/">Home</a>
-      </li>
+      </li> -->
       <li class="nav-item" id="associate">
         <a class="nav-link" href="/polls/associate">Associate</a>
       </li>
       <li class="nav-item" id="view-associations">
         <a class="nav-link" href="/polls/viewAssociations">View Associations</a>
       </li>
+      <li class="nav-item" id="mentor-activity-report">
+        <a class="nav-link" href="/polls/viewSubmittedMentorReport">Mentor Activity Report</a>
+      </li>
       <li class="nav-item" id="training-phases">
         <a class="nav-link" href="/polls/trainingPhases">Update Training Phases</a>
       </li>
 
       <!-- Dropdown -->
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" id="view-user">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">View User</a>
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">View Mentors</a>
-          <a class="dropdown-item" href="#">View Mentees</a>
+          <a class="dropdown-item" href="/polls/viewMentors">View Mentors</a>
+          <a class="dropdown-item" href="/polls/viewMentees">View Mentees</a>
         </div>
       </li>
 
