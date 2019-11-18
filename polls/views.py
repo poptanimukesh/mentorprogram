@@ -10,7 +10,21 @@ from django.forms.models import model_to_dict
 @csrf_exempt
 def index(request):
     template = loader.get_template('home.html')
+    active_mentors = MentorData.objects.all().filter(isactive=1)
+    available_mentors = active_mentors.all().filter(isavailable=1)
+    associated_mentors_count = active_mentors.all().filter(isavailable=0)
+    active_mentees = MenteeData.objects.all().filter(isactive=1)
+    available_mentees = active_mentees.all().filter(isavailable=1)
+    associated_mentees = active_mentees.all().filter(isavailable=0)
+    current_month = datetime.now().month
+    reports_submitted = ActivitySummary.objects.filter(submission_date__month=current_month)
+    print(reports_submitted.count())
     context = {
+        'available_mentors_count' : available_mentors.count(),
+        'associated_mentors_count' : associated_mentors_count.count(),
+        'active_mentees_count' : active_mentees.count(),
+        'associated_mentees_count' : associated_mentees.count(),
+        'reports_submitted_count' : reports_submitted.count()
     }
     return HttpResponse(template.render(context, request))
 

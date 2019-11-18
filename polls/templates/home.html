@@ -10,6 +10,7 @@
 {% load static %}
 {% block CSS %}
   <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 </head>
 
@@ -18,23 +19,35 @@
 
     <div class="container">
         {% include "navmenu.html" %}
+        {{  available_mentors_count | json_script:"available_mentors_count" }}
+        {{  associated_mentors_count | json_script:"associated_mentors_count" }}
+        {{  active_mentees_count | json_script:"active_mentees_count" }}
+        {{  associated_mentees_count | json_script:"associated_mentees_count" }}
+        {{ reports_submitted_count | json_script:"reports_submitted_count" }}
         <div class="row">
-          HELLO
+            <div id="mentorStatistics" class="col-lg-5"></div>
+            <div id="menteeStatistics" class="col-lg-5"></div>
         </div>
+        <div class="row">
+            <div class="col-lg-6">
+            <figure class="highcharts-figure">
+                <div id="reportStatistics" class="chart-container"></div>
+            </figure>
+        </div>
+        </div>
+        <div>
     </div>
 </body>
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#home').addClass('active');
-
-    } );
-</script>
-
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script rel="stylesheet" src="{% static 'js/index.js' %}">
+</script> 
 </html>
