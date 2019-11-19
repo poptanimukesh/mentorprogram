@@ -10,7 +10,6 @@
 {% load static %}
 {% block CSS %}
   <link rel="stylesheet" href="{% static 'css/header.css' %}">
-  <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 </head>
 
@@ -23,31 +22,114 @@
         {{  associated_mentors_count | json_script:"associated_mentors_count" }}
         {{  active_mentees_count | json_script:"active_mentees_count" }}
         {{  associated_mentees_count | json_script:"associated_mentees_count" }}
-        {{ reports_submitted_count | json_script:"reports_submitted_count" }}
         <div class="row">
-            <div id="mentorStatistics" class="col-lg-5"></div>
-            <div id="menteeStatistics" class="col-lg-5"></div>
+            <div class="accordion" id="accordionExample" style="width: 100%">
+                  <div class="card z-depth-0 bordered">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                          aria-expanded="true" aria-controls="collapseOne" id = "mentorStat">
+                          Mentor
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                      data-parent="#accordionExample">
+                      <div class="card-body">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Number of Mentors `Available` for Matching</td>
+                                    <td>{{ available_mentors_count }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Number of `Associated` Mentors</td>
+                                    <td>{{ associated_mentors_count }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Number of Mentors whose trainings are `Pending`</td>
+                                    <td>{{ pending_training_count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div id="mentorStatistics" class="col-lg-6"></div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card z-depth-0 bordered">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                          data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Mentee
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Number of Mentees `Available` for Matching</td>
+                                    <td>{{ active_mentees_count }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Number of `Associated` Mentees</td>
+                                    <td>{{ associated_mentees_count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div id="menteeStatistics" class="col-lg-6"></div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card z-depth-0 bordered">
+                    <div class="card-header" id="headingThree">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                          data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Association
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Number of `Associations`</td>
+                                    <td>{{ associated_mentors_count }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Number of mentors who submitted the `Monthly Activity Report`</td>
+                                    <td>{{ reports_submitted_count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                          <div class="progress" style="width: 50%">
+                            <div class="progress-bar" role="progressbar" style="width: {{reports_submitted_perc}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{reports_submitted_perc}}%</div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
         </div>
-        <div class="row">
-            <div class="col-lg-6">
-            <figure class="highcharts-figure">
-                <div id="reportStatistics" class="chart-container"></div>
-            </figure>
-        </div>
-        </div>
-        <div>
-    </div>
 </body>
+{% include "commonJS.html" %}
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script rel="stylesheet" src="{% static 'js/index.js' %}">
 </script> 
 </html>

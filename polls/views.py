@@ -20,11 +20,14 @@ def index(request):
     reports_submitted = ActivitySummary.objects.filter(submission_date__month=current_month)
     print(reports_submitted.count())
     context = {
+        'mentor_count': active_mentors.all().count(),
+        'pending_training_count': active_mentors.all().exclude(trainingphases=4).count(),
         'available_mentors_count' : available_mentors.count(),
         'associated_mentors_count' : associated_mentors_count.count(),
         'active_mentees_count' : active_mentees.count(),
         'associated_mentees_count' : associated_mentees.count(),
-        'reports_submitted_count' : reports_submitted.count()
+        'reports_submitted_count' : reports_submitted.count(),
+        'reports_submitted_perc' : str(round(reports_submitted.count()/associated_mentors_count.count()*100, 2))
     }
     return HttpResponse(template.render(context, request))
 
