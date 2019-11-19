@@ -37,18 +37,18 @@ def associate(request):
     	assoc.save()
     	return HttpResponse("SUCCESS")
     else:
-	    mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1)
-	    mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1)
-	    # output = []
-	    # output.append("Mentee, Mentor<br/>");
+        city = request.GET.get('city') if request.GET.get('city') else ""
+        print(request.GET.get('ethnicity'))
+        mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1, city__contains = city)
+        mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, city_state_zip__contains = city)
 	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
 
-	    template = loader.get_template('associate.html')
-	    context = {
-	        'mentee_list': mentee_list,
-	        'mentor_list': mentor_list,
-	    }
-	    return HttpResponse(template.render(context, request))
+        template = loader.get_template('associate.html')
+        context = {
+            'mentee_list': mentee_list,
+            'mentor_list': mentor_list,
+        }
+        return HttpResponse(template.render(context, request))
 
 def addYears(d, years):
     try:
