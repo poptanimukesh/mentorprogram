@@ -4,10 +4,25 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from .models import menteeData, menteeRegistrationData, mentorData, mentorRegistrationData
 from django.contrib.auth.models import User
+import requests
 
 @csrf_exempt
 def mentee_registration(request):
     if request.method == 'POST':
+        print(request.POST.get('g-recaptcha-response'))
+        secret_key = '6Lc218MUAAAAAEaZDEm1FhGut0McO6qseyEDi71w'
+
+        # captcha verification
+        data = {
+            'response': request.POST.get('g-recaptcha-response'),
+            'secret': secret_key
+        }
+        resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result_json = resp.json()
+
+        if not result_json.get('success'):
+            return template.render(request, 'contact_sent.html', {'is_robot': True})
+
         mData = menteeData()
         mRegData = menteeRegistrationData()
         mentee_auto_id = 0
@@ -62,6 +77,20 @@ def mentee_registration(request):
 @csrf_exempt
 def mentor_registration(request):
     if request.method == 'POST':
+        print(request.POST.get('g-recaptcha-response'))
+        secret_key = '6Lc218MUAAAAAEaZDEm1FhGut0McO6qseyEDi71w'
+
+        # captcha verification
+        data = {
+            'response': request.POST.get('g-recaptcha-response'),
+            'secret': secret_key
+        }
+        resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result_json = resp.json()
+
+        if not result_json.get('success'):
+            return template.render(request, 'contact_sent.html', {'is_robot': True})
+
         mData = mentorData()
         mRegData = mentorRegistrationData()
         mentor_auto_id = 0
