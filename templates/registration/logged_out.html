@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+{% include "header.html" %}
+
+<body>
+    <div class="container">
+      <div class="align-content-loginpages">
+		{% block content %}
+		  <p>Logged out!</p>  
+		  <a href="{% url 'login'%}">Click here to login again</a>
+		{% endblock %}
+	  </div>
+    </div>
+  </body>
+</html>

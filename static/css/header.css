@@ -30,3 +30,17 @@
     background-color: #e2e6ef;
     text-decoration: none;
 }
+
+.align-content-loginpages {
+    text-align: center;
+    margin-top: 8%;
+}
+
+.align-content-loginpages form {
+    display: inline-block;
+}
+
+.custom-a, .custom-a:hover {
+    cursor: default;
+    color: white;
+}
