@@ -3,6 +3,7 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from .models import menteeData, menteeRegistrationData, mentorData, mentorRegistrationData
+from django.contrib.auth.models import User
 
 @csrf_exempt
 def mentee_registration(request):
@@ -80,6 +81,11 @@ def mentor_registration(request):
         mData.languages = request.POST.get('languages')
         mData.isActive = 1
         mData.isAvailable = 1
+
+        user = User.objects.create_user(mData.email, mData.email, request.POST.get('password'))
+        user.first_name = mData.firstname
+        user.last_name = mData.lastname
+        user.save()
 
         mData.save()
         
