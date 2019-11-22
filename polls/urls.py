@@ -25,4 +25,8 @@ urlpatterns = [
     path('mentorHistory/', views.mentorHistory, name='mentorHistory'),
 
     path('viewSubmittedMentorReport/', views.viewSubmittedMentorReport, name='viewSubmittedMentorReport'),
+
+    path('logout/', views.logout, name='logout'),
+
+    path('export/<str:viewname>', views.export, name='export'),    
 ]
