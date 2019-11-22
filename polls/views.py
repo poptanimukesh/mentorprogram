@@ -8,6 +8,7 @@ import json
 from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect
 import csv
+from django.contrib.auth.models import User
 
 @csrf_exempt
 def index(request):
@@ -348,11 +349,40 @@ def viewSubmittedMentorReport(request):
 def mentorDetails(request,id):
     if request.method == "POST":
         mentorID = id
-        mentorObj = MentorData.objects.get( mentor_id = mentorID)
-        mentorObj.email = request.POST.get('email')
-        mentorObj.phone = request.POST.get('phone')
+        mentorData = MentorData.objects.get( mentor_id = mentorID)
+        mentorData.firstname = request.POST.get('firstname')
+        mentorData.lastname = request.POST.get('lastname')
+        mentorData.street_address = request.POST.get('street_address')
+        mentorData.city_state_zip = request.POST.get('city_state_zip')
+        mentorData.phonenumber = request.POST.get('phone')
+        mentorData.phonenumber_alter = request.POST.get('phone_alter')
+        mentorData.dob = request.POST.get('date_of_birth')
+        mentorData.pref_contact = request.POST.get('pref_contact')
+        mentorData.recent_employer = request.POST.get('employer')
+        mentorData.recent_position = request.POST.get('position')
+        mentorData.languages = request.POST.get('languages')
 
-        mentorObj.save()
+        mentorData.save()
+
+        mentorRegData = MentorRegistrationData.objects.get( mentor_id = mentorID)
+
+        mentorRegData.why_mentor = request.POST.get('details_1')
+        mentorRegData.brief_summary = request.POST.get('details_2')
+        mentorRegData.diff_situation = request.POST.get('details_3')
+        mentorRegData.min_commit = request.POST.get('details_4')
+        mentorRegData.min_avail = request.POST.get('details_5')
+        mentorRegData.mentor_training = request.POST.get('details_6')
+        mentorRegData.group_meetings = request.POST.get('details_7')
+        mentorRegData.any_else = request.POST.get('details_8')
+        
+        mentorRegData.save()
+
+        mentoremail = request.POST.get('email')
+
+        userDetails = User.objects.get(email = mentoremail)
+        userDetails.first_name = mentorData.firstname
+        userDetails.last_name = mentorData.lastname
+        userDetails.save()
 
         # All Mentors Redirect
         mentor_list = MentorData.objects.all().filter(isactive = 1)
@@ -398,9 +428,28 @@ def menteeDetails(request,id):
     if request.method == "POST":
         menteeID = id
         menteeData = MenteeData.objects.get( mentee_id = menteeID)
-        menteeData.email = request.POST.get('email')
-        menteeData.phone = request.POST.get('phone')
+        
+        menteeData.firstname = request.POST.get('firstname')
+        menteeData.lastname = request.POST.get('lastname')
+        menteeData.age = request.POST.get('age')
+        menteeData.phonenumber = request.POST.get('phone')
+        menteeData.city = request.POST.get('city')
+        
         menteeData.save()
+
+        menteeRegData = MenteeRegistrationData.objects.get( mentee_id = menteeID)
+
+        menteeRegData.comm_plat = request.POST.get('platform_yes_no')
+        menteeRegData.desire_dream = request.POST.get('details_1')
+        menteeRegData.have_mentor = request.POST.get('details_2')
+        menteeRegData.desc_yourslf = request.POST.get('details_3')
+        menteeRegData.major_chall = request.POST.get('details_4')
+        menteeRegData.ideal_mentor = request.POST.get('details_5')
+        menteeRegData.any_else = request.POST.get('details_6')
+        menteeRegData.race_req = request.POST.get('mentor_race')
+        menteeRegData.race_details = request.POST.get('mentor_race_details')
+        
+        menteeRegData.save()
 
         # All Mentees Redirect
         mentee_list = MenteeData.objects.all().filter(isactive = 1)
