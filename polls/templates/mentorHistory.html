@@ -16,6 +16,7 @@
 
   <body>
     <div class="container">
+      {% include "navmenu-mentor.html" %}
       {% if mentor_history %}
         <div class="accordion" id="accordionExample">
           {% for report_history in mentor_history %}
