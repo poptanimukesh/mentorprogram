@@ -84,6 +84,7 @@ DATABASES = {
      'PASSWORD': 'Useless@123',
      'HOST': 'mentor-program-dev.mysql.database.azure.com',
      'PORT': '3306',
+     'CONN_MAX_AGE' : 0,
      'OPTIONS': {
        'autocommit': True,
      }

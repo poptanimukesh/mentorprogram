@@ -95,15 +95,12 @@ def associate(request):
         if request.GET.get('city'):
             city = request.GET.get('city')
             mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1, city__contains = city)
-            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, city_state_zip__contains = city)
+            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, trainingphases = 4, city_state_zip__contains = city)
         else:
             mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1)
-            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1)
+            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, trainingphases = 4)
         #print(request.GET.get('ethnicity'))
         
-        
-	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
-
         template = loader.get_template('associate.html')
         context = {
             'mentee_list': mentee_list,
@@ -126,17 +123,26 @@ def mentorActivity(request):
     if request.user.is_staff:
         return redirect("/polls/")
     if request.method == 'GET':
-        mentorId = 1005
-        mentor = MentorData.objects.get(pk=1005)
+        mentor = MentorData.objects.get(email = request.user.email)
+        mentorId = mentor.mentor_id
+        print(mentorId)
         
         assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
         print(assoc)
         incomplete_records = getPastIncompleteReports(assoc, mentorId)
+        start_month = ""
+        start_year = ""
+        if len(assoc) > 0:
+            start_month = assoc[0].match_date.month
+            start_year = assoc[0].match_date.year
+
         template = loader.get_template('mentorActivity.html')
         context = {
           'incomplete_records' : incomplete_records,
-          'start_month': assoc[0].match_date.month,
-          'start_year': assoc[0].match_date.year
+          'start_month': start_month,
+          'start_year': start_year,
+          'mentorId' : mentorId,
+          'assoc_len': len(assoc)
         }
         return HttpResponse(template.render(context, request))
     elif request.method == 'POST':
@@ -196,25 +202,28 @@ def getPastIncompleteReports(assoc, mentorId):
 def mentorHistory(request):
     if not request.user.is_authenticated:
         return redirect("/accounts/login")
-    mentor_id = 1005
+    mentor = MentorData.objects.get(email = request.user.email)
+    mentor_id = mentor.mentor_id
     mentor_history = list()
-    assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentor_id, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())[0]
-    start_date = assoc.match_date.replace(day=1)
-    activity_summaries = ActivitySummary.objects.all().order_by('-submission_date').filter(mentor_id = mentor_id, submission_date__gte = start_date, submission_date__lte = datetime.now())
-    for activity_summary in activity_summaries:
-        current_activity = dict()
-        current_activity['month'] = calendar.month_name[activity_summary.submission_date.month]
-        current_activity['year'] = activity_summary.submission_date.year
-        current_activity['collapse_mentor'] = '#collapse_' + str(activity_summary.report_id)
-        current_activity['aria_mentor'] = 'collapse_' + str(activity_summary.report_id)
-        current_activity['activity_summary'] = model_to_dict(activity_summary)
-        activities = [model_to_dict(activity) for activity in ActivityList.objects.all().filter(report_id = activity_summary.report_id)]
-        current_activity['activities'] = activities;
-        mentor_history.append(current_activity)
+    assoc_all = MentorMenteeAssoc.objects.filter(mentor_id = mentor_id, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
+    if len(assoc_all) > 0:
+        assoc = assoc_all[0]
+        start_date = assoc.match_date.replace(day=1)
+        activity_summaries = ActivitySummary.objects.all().order_by('-submission_date').filter(mentor_id = mentor_id, submission_date__gte = start_date, submission_date__lte = datetime.now())
+        for activity_summary in activity_summaries:
+            current_activity = dict()
+            current_activity['month'] = calendar.month_name[activity_summary.submission_date.month]
+            current_activity['year'] = activity_summary.submission_date.year
+            current_activity['collapse_mentor'] = '#collapse_' + str(activity_summary.report_id)
+            current_activity['aria_mentor'] = 'collapse_' + str(activity_summary.report_id)
+            current_activity['activity_summary'] = model_to_dict(activity_summary)
+            activities = [model_to_dict(activity) for activity in ActivityList.objects.all().filter(report_id = activity_summary.report_id)]
+            current_activity['activities'] = activities;
+            mentor_history.append(current_activity)
 
     template = loader.get_template('mentorHistory.html')
     context = {
-      'mentor_history': mentor_history
+      'mentor_history': mentor_history,
     }
     return HttpResponse(template.render(context, request))  
 
@@ -332,7 +341,7 @@ def viewSubmittedMentorReport(request):
         mentorId = request.POST['mentor_id']
         print(request.POST['start_range'])
         start_range = datetime.strptime(request.POST['start_range'] + '-01', '%Y-%m-%d')
-        end_range = datetime.strptime(request.POST['end_range'] + '-31', '%Y-%m-%d')
+        end_range = datetime.strptime(request.POST['end_range'] + '-30', '%Y-%m-%d')
         mentor_history = list()
         activity_summaries = ActivitySummary.objects.all().order_by('-submission_date').filter(mentor_id = mentorId, 
             submission_date__gte = start_range, submission_date__lte = end_range)

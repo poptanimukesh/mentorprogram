@@ -48,7 +48,7 @@ $(document).ready(function(){
     formData.forEach(function(value, key){
       object[key] = value;
     });
-    object['mentorId'] = 1005;// TODO: Keep Dynamic
+    object['mentorId'] = document.getElementById("mid").innerHTML;// TODO: Keep Dynamic
     let dateSelected = $('#datepicker').datepicker('getDate');
     object['yearSelected'] = dateSelected.getFullYear() + '-' + (dateSelected.getMonth()+1) + '-01'; // date doesn't matter, hence 01
     object['callAttended'] = $('#callAttended').is(":checked");

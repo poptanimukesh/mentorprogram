@@ -31,6 +31,8 @@
                 
     <div class="container">
       {% include "navmenu-mentor.html" %}
+      <div id="mid" style="display: none;">{{mentorId}}</div>
+      {% if assoc_len > 0 %}
       <form id="form" enctype="multipart/form-data">
         <div class="jumbotron" style="display: flex;">
           <div class="col-sm-4">
@@ -105,6 +107,9 @@
           </tr>
         </table>
       </div>
+      {% else %}
+      <div>No associated mentee as of now.</div>
+      {% endif %}
     </div>
 
 
