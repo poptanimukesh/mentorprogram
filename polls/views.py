@@ -92,10 +92,16 @@ def associate(request):
     	assoc.save()
     	return HttpResponse("SUCCESS")
     else:
-        city = request.GET.get('city') if request.GET.get('city') else ""
-        print(request.GET.get('ethnicity'))
-        mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1, city__contains = city)
-        mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1)
+        if request.GET.get('city'):
+            city = request.GET.get('city')
+            mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1, city__contains = city)
+            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, city_state_zip__contains = city)
+        else:
+            mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1)
+            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1)
+        #print(request.GET.get('ethnicity'))
+        
+        
 	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
 
         template = loader.get_template('associate.html')
