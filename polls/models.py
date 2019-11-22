@@ -91,10 +91,11 @@ class ActivityList(models.Model):
     activity_id = models.AutoField(primary_key=True)
     activity_type = models.CharField(max_length=50, blank=True, null=True)
     iskept = models.CharField(db_column='isKept', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    duration = models.CharField(max_length=10, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
     report_id = models.CharField(max_length=45)
     date = models.DateField()
+    hours = models.IntegerField(blank=True, null=True)
+    minutes = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -102,9 +103,9 @@ class ActivityList(models.Model):
 
 
 class ActivitySummary(models.Model):
-    activity_id = models.AutoField(primary_key=True)
-    mentor_id = models.IntegerField()
-    mentee_id = models.IntegerField()
+    activity = models.OneToOneField(ActivityList, models.DO_NOTHING, primary_key=True)
+    mentor = models.ForeignKey('MentorData', models.DO_NOTHING)
+    mentee = models.ForeignKey('MenteeData', models.DO_NOTHING)
     submission_date = models.DateField(blank=True, null=True)
     callattended = models.CharField(db_column='callAttended', max_length=10, blank=True, null=True)  # Field name made lowercase.
     report_id = models.CharField(unique=True, max_length=45)

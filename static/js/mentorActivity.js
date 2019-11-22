@@ -1,12 +1,29 @@
 $(document).ready(function(){
+  var start_month = document.getElementById("start_month").value;
+  var start_year = document.getElementById("start_year").value;
   $("#datepicker").datepicker({ 
     format: "MM yyyy",
-        autoclose: true, 
-        minViewMode: "months",
-        todayHighlight: true
-  }).datepicker('update', new Date()).on('changeDate', function(){$('#errorMsg').hide()});
+    autoclose: true, 
+    minViewMode: "months",
+    todayHighlight: true,
+  }).datepicker('update', new Date()).on('changeDate', function(changedDate){
+    var newMonth = changedDate.date.getMonth() + 1;
+    var newYear = changedDate.date.getFullYear();
+    console.log(newMonth);
+    console.log(newYear);
+    if(newYear < start_year || newMonth < start_month) {
+      $("#mentorActivitySummarySection").find("*").attr("disabled", "disabled");
+      $('#msg').html('You cannot submit the report of this month. (Date prior to Association)');
+      $('#errorMsg').show();
+    } else {
+      $("#mentorActivitySummarySection").find("*").removeAttr("disabled");
+      $('#msg').html('');
+      $('#errorMsg').hide();
+    }
+  });
+  
+  // $("#mentorActivitySummarySection").find("*").removeAttr("disabled");
   $('#errorMsg').hide();
- 
   for (var i = 0; i < 5; i++) {
     var content = jQuery('#sample_table tr'),
     size = jQuery('#tbl_posts >tbody >tr').length + 1,
@@ -18,7 +35,8 @@ $(document).ready(function(){
     element.find('.sn').html(size);
     element.find('.act').attr('name', 'activity' + size);
     element.find('.kept').attr('name', 'kept' + size);
-    element.find('.dur').attr('name', 'duration' + size);
+    element.find('.dur_h').attr('name', 'dur_h' + size);
+    element.find('.dur_min').attr('name', 'dur_min' + size);
     element.find('.comm').attr('name', 'comments' + size);
     element.find('.date_picker').attr('name', 'date_picker' + size);
   }

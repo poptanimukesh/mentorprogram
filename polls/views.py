@@ -120,15 +120,20 @@ def mentorActivity(request):
         return redirect("/polls/")
     if request.method == 'GET':
         mentorId = 1005
-        incomplete_records = getPastIncompleteReports(mentorId)
+        mentor = MentorData.objects.get(pk=1005)
+        
+        assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
+        print(assoc)
+        incomplete_records = getPastIncompleteReports(assoc, mentorId)
         template = loader.get_template('mentorActivity.html')
         context = {
-          'incomplete_records' : incomplete_records
+          'incomplete_records' : incomplete_records,
+          'start_month': assoc[0].match_date.month,
+          'start_year': assoc[0].match_date.year
         }
         return HttpResponse(template.render(context, request))
     elif request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
-
         idx = 1
         response = json.loads(body_unicode)
         mentor_id = response['mentorId']
@@ -146,9 +151,8 @@ def mentorActivity(request):
                 k = 'NOT KEPT'
                 if 'kept' + str(idx) in response:
                     k = 'KEPT'
-                print("KEPT", k)
                 aList = ActivityList(activity_type=response['activity' + str(idx)], iskept=k
-                    , duration=response['duration'+str(idx)], comments=response['comments'+str(idx)], 
+                    , hours= '%02d' % int(response['dur_h'+str(idx)]), minutes='%02d' % int(response['dur_h'+str(idx)]), comments=response['comments'+str(idx)], 
                     report_id = report_id, date = response['date_picker' + str(idx)])
                 aList.save()
             idx = idx + 1
@@ -157,8 +161,7 @@ def mentorActivity(request):
 ''' Checks if a Mentor has any past incomplete reports.
    Input: Mentor Id
 '''
-def getPastIncompleteReports(mentorId):
-    assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
+def getPastIncompleteReports(assoc, mentorId):
     incomplete_records = list()
     if len(assoc) > 0:
         assoc = assoc[0]

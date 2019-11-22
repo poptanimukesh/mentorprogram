@@ -16,7 +16,6 @@
 
   <body>
     <div class="container">
-      {% include "navmenu-mentor.html" %}
       {% if mentor_history %}
         <div class="accordion" id="accordionExample">
           {% for report_history in mentor_history %}
@@ -38,7 +37,7 @@
                         <th scope="col">Meeting/Activity Scheduled</th>
                         <th scope="col">Attended</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Hours/Minutes</th>
+                        <th scope="col">Activity Duration  <br/>(Hrs : Mins)</th>
                         <th scope="col">Comments (Include goals set, accomplishments, issues)</th>
                       </tr>
                     </thead>
@@ -49,7 +48,7 @@
                         <td>{{ record.activity_type }}</td>
                         <td>{{ record.iskept }}</td>
                         <td>{{ record.date }}</td>
-                        <td>{{ record.duration }}</td>
+                        <td>{{ record.hours }} hours : {{ record.minutes }} mins</td>
                         <td>{{ record.comments }}</td>
                       </tr>
                       {% endfor %}

@@ -30,7 +30,7 @@ $(document).ready(function(){
             mentor_history += '<div class="card-body"> <h5>Monthly call attended: '+ value['activity_summary']['callattended'] + ' </h5>';
             mentor_history += '<table class="table table-sm table-striped"><thead><tr><th scope="col">#</th>';
             mentor_history += '<th scope="col">Meeting/Activity Scheduled</th><th scope="col">Attended</th>';
-            mentor_history += '<th scope="col">Date</th><th scope="col">Hours/Minutes</th>';
+            mentor_history += '<th scope="col">Date</th><th scope="col">Activity Duration  <br/>(Hrs : Mins)</th>';
             mentor_history += '<th scope="col">Comments (Include goals set, accomplishments, issues)</th></tr></thead><tbody>';
             var id = 1;
             $.each(value['activities'], function (idx, val) {
@@ -38,7 +38,7 @@ $(document).ready(function(){
               mentor_history += '<td> '+ val['activity_type'] + '</td>';
               mentor_history += '<td> ' + val['iskept'] + '</td>';
               mentor_history += '<td> ' + val['date'] + '</td>';
-              mentor_history += '<td> ' + val['duration'] + '</td>';
+              mentor_history += '<td> ' + val['hours'] + ' hours : ' + val['minutes'] + ' mins</td>';
               mentor_history+= '<td> ' + val['comments'] + '</td></tr>';
             });
             mentor_history += '</tbody></table></div></div></div>';

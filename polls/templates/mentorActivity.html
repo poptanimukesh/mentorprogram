@@ -30,7 +30,6 @@
   <body>
                 
     <div class="container">
-      {% include "navmenu-mentor.html" %}
       <form id="form" enctype="multipart/form-data">
         <div class="jumbotron" style="display: flex;">
           <div class="col-sm-4">
@@ -42,7 +41,8 @@
 
           <div class="col-sm-4">
             <div class="row">
-
+              <input type="hidden" id="start_month" name="start_month" value="{{ start_month }}">
+              <input type="hidden" id="start_year" name="start_year" value="{{ start_year }}">
               <div class="form-check" style="margin-top: 10px;margin-left: 30px;">
                 <input type="checkbox" class="form-check-input" id="callAttended" />
                 <label class="form-check-label" for="exampleCheck1">Call attended this month?</label>
@@ -61,24 +61,26 @@
                 </div>
             </div>      
           </div>
-        </div>  
-        <table class="table table-bordered" id="tbl_posts">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Activity Scheduled</th>
-              <th>Attended</th>
-              <th>Date</th>
-              <th>Hours/Minutes</th>
-              <th>Comments (Goals set, accomplishments, issues)</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="tbl_posts_body">
-          </tbody>
-        </table>
-        <div class="col-sm-10" style="align-items: center;text-align: center">
-          <a id="submit" class="btn btn-primary read-more" style="background:#3399ff;color:white">Submit</a>
+        </div> 
+        <div id="mentorActivitySummarySection"> 
+          <table class="table table-bordered" id="tbl_posts">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Activity Scheduled</th>
+                <th>Attended</th>
+                <th>Date</th>
+                <th>Activity Duration  <br/>(Hrs : Mins)</th>
+                <th>Comments (Goals set, accomplishments, issues)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tbl_posts_body">
+            </tbody>
+          </table>
+          <div class="col-sm-10" style="align-items: center;text-align: center">
+            <a id="submit" class="btn btn-primary read-more" style="background:#3399ff;color:white">Submit</a>
+          </div>
         </div>
       </form>
       <div style="display:none;">
@@ -88,7 +90,10 @@
             <td><input type="text" class="act full_width" name="activity" placeholder="Activity"/></td>
             <td><label class="switch"><input type="checkbox" class="kept" name="kept" value="kept"><span class="slider round"></span></label></td>
             <td><input type="date" class="date_picker" name="date_picker" /></td>
-            <td><input type="text" class="dur full_width" name="duration" placeholder="Duration"/></td>
+            <td><div class="full_width">
+              <input type="number" id="dur_h" name="dur_h" class="dur_h" min="0" max="24" value="0"/>:
+              <input type="number" id="dur_min" name="dur_min" class="dur_min" min="0" max="60" value="0"/>
+            </div></td>
 
             <td><textarea rows="2" cols="50" class="comm full_width" name="comments" placeholder="Comments"></textarea></td>
             <td>
