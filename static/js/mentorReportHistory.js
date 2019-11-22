@@ -27,9 +27,9 @@ $(document).ready(function(){
             mentor_history += '<div class="card-header" id = ' + value['activity_summary']['report_id'] + '><h2 class="mb-0">';
             mentor_history += '<button class="btn btn-link custom-btn" type="button" data-toggle="collapse" data-target=' + value['collapse_mentor'] + ' aria-expanded="true" aria-controls='+ value['aria_mentor'] + '>' + value['month'] + ' - ' + value['year'] + '</button></h2></div>';
             mentor_history += '<div id= '  + value['aria_mentor'] + ' class="collapse" aria-labelledby= ' +  value['activity_summary']['report_id'] + ' data-parent="#mentorHistoryAccordion">';
-            mentor_history += '<div class="card-body"> <h5>Montly call attended: '+ value['activity_summary']['callattended'] + ' </h5>';
+            mentor_history += '<div class="card-body"> <h5>Monthly call attended: '+ value['activity_summary']['callattended'] + ' </h5>';
             mentor_history += '<table class="table table-sm table-striped"><thead><tr><th scope="col">#</th>';
-            mentor_history += '<th scope="col">Meeting/Activity Scheduled</th><th scope="col">Kept?</th>';
+            mentor_history += '<th scope="col">Meeting/Activity Scheduled</th><th scope="col">Attended</th>';
             mentor_history += '<th scope="col">Date</th><th scope="col">Hours/Minutes</th>';
             mentor_history += '<th scope="col">Comments (Include goals set, accomplishments, issues)</th></tr></thead><tbody>';
             var id = 1;

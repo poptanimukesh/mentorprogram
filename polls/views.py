@@ -6,6 +6,8 @@ from datetime import datetime
 import calendar
 import json
 from django.forms.models import model_to_dict
+from django.shortcuts import render, redirect
+import csv
 
 @csrf_exempt
 def index(request):
@@ -32,7 +34,42 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 @csrf_exempt
+def export(request, viewname):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="', viewname, '.csv"'
+
+    writer = csv.writer(response)
+    if viewname == 'AssociationsList':
+        writer.writerow(['Mentor Id', 'Mentor Name', 'Mentee Id', 'Mentee Name', 'Association Date', 'Expiry Date'])
+        
+        assoc_list, mentor_map, mentee_map = getAssociations();
+        for assoc in assoc_list:
+            values = []
+            values.append(assoc.mentor_id)
+            values.append(mentor_map[assoc.mentor_id])
+            values.append(assoc.mentee_id)
+            values.append(mentee_map[assoc.mentee_id])
+            values.append(assoc.match_date)
+            values.append(assoc.expiry_date)
+            writer.writerow(values)
+    elif viewname == 'MentorList':
+        writer.writerow(['Mentor Id', 'Mentor Name', 'Email', 'Phone Number', 'Association Date', 'Expiry Date'])
+        
+        mentor_list = MentorData.objects.all().filter(isactive = 1)
+        for m in mentor_list:
+            print(m)
+            writer.writerow(model_to_dict(m).values())
+
+
+    return response
+
+@csrf_exempt
 def associate(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
     	print(request.POST['mentee_id'])
     	mentorId = request.POST['mentor_id']
@@ -57,7 +94,7 @@ def associate(request):
         city = request.GET.get('city') if request.GET.get('city') else ""
         print(request.GET.get('ethnicity'))
         mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1, city__contains = city)
-        mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, city_state_zip__contains = city)
+        mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1)
 	    # output.append(', '.join([str([mentee_list[i].firstname, mentor_list[i].firstname]) for i in range(len(mentor_list))]))
 
         template = loader.get_template('associate.html')
@@ -77,6 +114,10 @@ def addYears(d, years):
 
 @csrf_exempt
 def mentorActivity(request):
+    if not request.user.is_authenticated:
+        return redirect("/accounts/login")
+    if request.user.is_staff:
+        return redirect("/polls/")
     if request.method == 'GET':
         mentorId = 1005
         incomplete_records = getPastIncompleteReports(mentorId)
@@ -143,6 +184,8 @@ def getPastIncompleteReports(mentorId):
 
 @csrf_exempt
 def mentorHistory(request):
+    if not request.user.is_authenticated:
+        return redirect("/accounts/login")
     mentor_id = 1005
     mentor_history = list()
     assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentor_id, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())[0]
@@ -185,6 +228,31 @@ def trainingPhases(request):
         }
         return HttpResponse(template.render(context, request))
 
+
+def getAssociations():
+    assoc_list = MentorMenteeAssoc.objects.all()
+
+    assoc_mentor_list = []
+    assoc_mentee_list = []
+
+    for assoc in assoc_list:
+        assoc_mentor_list.append(assoc.mentor_id)
+        assoc_mentee_list.append(assoc.mentee_id)
+
+    mentor_data = MentorData.objects.all().filter(mentor_id__in = assoc_mentor_list)
+    mentee_data = MenteeData.objects.all().filter(mentee_id__in = assoc_mentee_list)
+
+    mentor_map = dict() #{id -> name}
+    mentee_map = dict() #{id -> name}
+
+    for mentor in mentor_data:
+        mentor_map[mentor.mentor_id] = mentor.firstname + ' ' + mentor.lastname
+
+    for mentee in mentee_data:
+        mentee_map[mentee.mentee_id] = mentee.firstname + ' ' + mentee.lastname
+
+    return assoc_list, mentor_map, mentee_map
+
 @csrf_exempt
 def viewAssociations(request):
     if request.method == "POST":
@@ -203,26 +271,7 @@ def viewAssociations(request):
         assoc.delete()
         return HttpResponse("SUCCESS")
     else:
-        assoc_list = MentorMenteeAssoc.objects.all()
-
-        assoc_mentor_list = []
-        assoc_mentee_list = []
-
-        for assoc in assoc_list:
-            assoc_mentor_list.append(assoc.mentor_id)
-            assoc_mentee_list.append(assoc.mentee_id)
-
-        mentor_data = MentorData.objects.all().filter(mentor_id__in = assoc_mentor_list)
-        mentee_data = MenteeData.objects.all().filter(mentee_id__in = assoc_mentee_list)
-
-        mentor_map = dict() #{id -> name}
-        mentee_map = dict() #{id -> name}
-
-        for mentor in mentor_data:
-            mentor_map[mentor.mentor_id] = mentor.firstname + ' ' + mentor.lastname
-
-        for mentee in mentee_data:
-            mentee_map[mentee.mentee_id] = mentee.firstname + ' ' + mentee.lastname
+        assoc_list, mentor_map, mentee_map = getAssociations()
 
         template = loader.get_template('listAssociations.html')
         context = {
@@ -373,3 +422,7 @@ def menteeDetails(request,id):
             'mentee_reg_data' : mentee_reg_data
         }
         return HttpResponse(template.render(context, request))
+
+
+def logout(req):
+    return render(req,"registration/logout.html",{})
