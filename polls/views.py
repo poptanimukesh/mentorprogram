@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 
 @csrf_exempt
 def index(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     template = loader.get_template('home.html')
     active_mentors = MentorData.objects.all().filter(isactive=1)
     available_mentors = active_mentors.all().filter(isavailable=1)
@@ -229,6 +231,8 @@ def mentorHistory(request):
 
 @csrf_exempt
 def trainingPhases(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
         mentorId = request.POST['mentor_id']
         mentorObj = MentorData.objects.get(mentor_id = mentorId)
@@ -274,6 +278,8 @@ def getAssociations():
 
 @csrf_exempt
 def viewAssociations(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
         mentorId = request.POST['mentor_id']
         menteeId = request.POST['mentee_id']
@@ -302,6 +308,8 @@ def viewAssociations(request):
 
 @csrf_exempt
 def viewMentors(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
         mentorId = request.POST['mentor_id']
 
@@ -321,6 +329,8 @@ def viewMentors(request):
 
 @csrf_exempt
 def viewSubmittedMentorReport(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "GET":
         mentors = list()
         associated_mentors = MentorData.objects.all().filter(isactive = 1, isavailable = 0)
@@ -365,6 +375,8 @@ def viewSubmittedMentorReport(request):
 
 @csrf_exempt
 def mentorDetails(request,id):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
         mentorID = id
         mentorData = MentorData.objects.get( mentor_id = mentorID)
@@ -423,6 +435,8 @@ def mentorDetails(request,id):
 
 @csrf_exempt
 def viewMentees(request):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
         menteeId = request.POST['mentee_id']
 
@@ -443,6 +457,8 @@ def viewMentees(request):
 
 @csrf_exempt
 def menteeDetails(request,id):
+    if not request.user.is_authenticated and not request.user.is_staff:
+        return redirect("/accounts/login")
     if request.method == "POST":
         menteeID = id
         menteeData = MenteeData.objects.get( mentee_id = menteeID)
