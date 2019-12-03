@@ -163,9 +163,9 @@ def mentorActivity(request):
         print(response)
         while 'activity' + str(idx) in response:
             if response['activity' + str(idx)] != '':
-                k = 'NOT KEPT'
+                k = 'NO'
                 if 'kept' + str(idx) in response:
-                    k = 'KEPT'
+                    k = 'YES'
                 aList = ActivityList(activity_type=response['activity' + str(idx)], iskept=k
                     , hours= '%02d' % int(response['dur_h'+str(idx)]), minutes='%02d' % int(response['dur_h'+str(idx)]), comments=response['comments'+str(idx)], 
                     report_id = report_id, date = response['date_picker' + str(idx)])

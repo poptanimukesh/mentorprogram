@@ -63,7 +63,10 @@ $(document).ready(function(){
         if(data == 'Already Submitted') {
           $('#msg').html(data);
           $('#errorMsg').show();
-        }
+        } else{
+          alert("Success");
+          form.reset();
+      }
       },
       error: function( jqXhr, textStatus, errorThrown ){
         console.log( errorThrown );

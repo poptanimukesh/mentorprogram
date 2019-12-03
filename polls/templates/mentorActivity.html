@@ -35,8 +35,9 @@
       {% if assoc_len > 0 %}
       <form id="form" enctype="multipart/form-data">
         <div class="jumbotron" style="display: flex;">
-          <div class="col-sm-4">
-            <div id="datepicker" class="input-group date" style="margin-top: 6px;">
+          <div class="col-sm-5" style="display: flex;">
+            <div style="margin-top: 13px">Select Month:</div>
+            <div id="datepicker"  type="date" class="input-group date" style="margin-top: 6px;width: 60%">
               <input class="form-control" type="text">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
@@ -53,7 +54,7 @@
             </div>
           </div>
 
-          <div class="col-sm-4" style="float: right;"><a class="btn btn-primary pull-right add-record" data-added="0"><i class="fas fa-plus"></i>&nbsp;Add Row</a></div>
+          <div class="col-sm-3" style="float: right;"><a class="btn btn-primary pull-right add-record" data-added="0"><i class="fas fa-plus"></i>&nbsp;Add Activity</a></div>
         </div>
         <div class="row" id = 'errorMsg'>
           <div>
@@ -108,7 +109,7 @@
         </table>
       </div>
       {% else %}
-      <div>No associated mentee as of now.</div>
+      <div>No associated mentee as of now</div>
       {% endif %}
     </div>
 
