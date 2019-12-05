@@ -29,7 +29,6 @@
     {% if user.is_authenticated %}
         <div class="col-sm-3" style="margin: auto;"> 
             <div>Welcome, {{ user.first_name }} {{ user.last_name }}</div>
-            <div><a href="#">Profile Information</a></div>
             <div><button type="button" class="btn btn-primary"><a class="custom-a" href="{% url 'logout'%}">Logout</a></button></div>
         </div>
     {% endif %}
