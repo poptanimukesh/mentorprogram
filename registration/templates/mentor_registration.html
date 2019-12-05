@@ -138,7 +138,8 @@
                                 <label for="email" class="lead">Email <span class = "required_field">*</span></label>
                             </div>
                             <div class = "col-sm-8">
-                                <input type="email" class="form-control form-rounded" id="email" name = "email" placeholder="Enter Email">
+                                <input type="email" class="form-control form-rounded" id="email" name = "email" data-id="email" placeholder="Enter Email">
+                                <label id="email-error" style="color: #a94442;">Email id alredy registered, use other email id</label>
                             </div>
                         </div>
 
@@ -302,5 +303,30 @@
                 
             </form>
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(document).find("*[data-id=email]").on('change', onEmailChange);
+                $('#email-error').hide();
+            });
+
+            var onEmailChange = function(e) {
+               var target = e.target;
+               var elem = $(target);
+               var wrapper = elem.parent().parent();
+               var url = '/registration/checkUserEmail?email='+target.value;
+               $.get(url).done(function(result) {
+                   result = JSON.parse(result);
+                   if(result.status=='success') {
+                        $('#email-error').hide();
+                   } else {
+                        $('#email-error').show();
+                   }
+               }).fail(function(err) {
+                   alert('Error');
+               });
+           };
+
+        </script>
     </body>
 </html>

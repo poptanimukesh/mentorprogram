@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from .models import menteeData, menteeRegistrationData, mentorData, mentorRegistrationData
 from django.contrib.auth.models import User
 import requests
+import json
 
 @csrf_exempt
 def mentee_registration(request):
@@ -20,8 +21,8 @@ def mentee_registration(request):
         resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
         result_json = resp.json()
 
-        if not result_json.get('success'):
-            return template.render(request, 'contact_sent.html', {'is_robot': True})
+        #if not result_json.get('success'):
+        #    return template.render(request, 'contact_sent.html', {'is_robot': True})
 
         mData = menteeData()
         mRegData = menteeRegistrationData()
@@ -88,8 +89,8 @@ def mentor_registration(request):
         resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
         result_json = resp.json()
 
-        if not result_json.get('success'):
-            return template.render(request, 'contact_sent.html', {'is_robot': True})
+        #if not result_json.get('success'):
+        #    return template.render(request, 'contact_sent.html', {'is_robot': True})
 
         mData = mentorData()
         mRegData = mentorRegistrationData()
@@ -151,3 +152,15 @@ def mentor_registration(request):
     template = loader.get_template('mentor_registration.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+
+@csrf_exempt
+def checkUserEmail(req):
+    userEmail = req.GET.get("email")
+    mentorExists = mentorData.objects.filter(email=userEmail).exists()
+    menteeExists = menteeData.objects.filter(email=userEmail).exists()
+    result = {'status': 'success'}
+    if mentorExists or menteeExists:
+        result = {'status': 'failure'}
+
+    return HttpResponse(json.dumps(result))
