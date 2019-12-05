@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -42,7 +40,7 @@ CREATE TABLE `mentor_mentee_assoc` (
 
 LOCK TABLES `mentor_mentee_assoc` WRITE;
 /*!40000 ALTER TABLE `mentor_mentee_assoc` DISABLE KEYS */;
-INSERT INTO `mentor_mentee_assoc` VALUES (1001,1001,'2019-11-15','2020-11-15'),(1003,1006,'2019-10-26','2020-10-26'),(1005,1007,'2019-10-22','2020-11-22'),(1009,1011,'2019-11-15','2020-11-15');
+INSERT INTO `mentor_mentee_assoc` VALUES (1027,1041,'2019-11-22','2020-11-22'),(1028,1039,'2019-11-23','2020-11-23');
 /*!40000 ALTER TABLE `mentor_mentee_assoc` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:16:58
+-- Dump completed on 2019-12-04 21:16:10

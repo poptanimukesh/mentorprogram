@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -38,7 +36,7 @@ CREATE TABLE `django_admin_log` (
   KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +45,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2019-11-17 21:57:05.580632','2','poptanim',1,'[{\"added\": {}}]',4,1),(2,'2019-11-20 23:40:31.725381','3','pfield',1,'[{\"added\": {}}]',4,1),(3,'2019-11-20 23:47:30.244767','3','pfield',2,'[{\"changed\": {\"fields\": [\"first_name\", \"last_name\", \"email\", \"user_permissions\", \"last_login\"]}}]',4,1),(4,'2019-11-20 23:47:43.141050','3','pfield',2,'[{\"changed\": {\"fields\": [\"last_login\"]}}]',4,1),(5,'2019-11-20 23:48:14.890695','3','pfield',2,'[{\"changed\": {\"fields\": [\"is_staff\"]}}]',4,1);
+INSERT INTO `django_admin_log` VALUES (1,'2019-11-17 21:57:05.580632','2','poptanim',1,'[{\"added\": {}}]',4,1),(2,'2019-11-20 23:40:31.725381','3','pfield',1,'[{\"added\": {}}]',4,1),(3,'2019-11-20 23:47:30.244767','3','pfield',2,'[{\"changed\": {\"fields\": [\"first_name\", \"last_name\", \"email\", \"user_permissions\", \"last_login\"]}}]',4,1),(4,'2019-11-20 23:47:43.141050','3','pfield',2,'[{\"changed\": {\"fields\": [\"last_login\"]}}]',4,1),(5,'2019-11-20 23:48:14.890695','3','pfield',2,'[{\"changed\": {\"fields\": [\"is_staff\"]}}]',4,1),(6,'2019-11-22 21:15:54.254821','8','pfield@5050leadership.org',1,'[{\"added\": {}}]',4,1),(7,'2019-11-22 21:16:27.906415','8','pfield@5050leadership.org',2,'[{\"changed\": {\"fields\": [\"first_name\", \"last_name\", \"email\", \"is_staff\", \"last_login\"]}}]',4,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:16:42
+-- Dump completed on 2019-12-04 21:14:34

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -43,7 +41,7 @@ CREATE TABLE `mentor_data` (
   `isAvailable` bit(1) DEFAULT NULL,
   `trainingPhases` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`mentor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1027 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1033 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +50,7 @@ CREATE TABLE `mentor_data` (
 
 LOCK TABLES `mentor_data` WRITE;
 /*!40000 ALTER TABLE `mentor_data` DISABLE KEYS */;
-INSERT INTO `mentor_data` VALUES (1001,'Raj','Thaker','0000-00-00 00:00:00','severance ','None','2133730977','','rpthaker@usc.edu','2019-11-11',NULL,'kwqne','lwmd','lkwmd','','',4),(1002,'Tiger','Nixon','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',4),(1003,'Garrett','Winters','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','\0',4),(1004,'Ashton','Cox','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'\0','\0',4),(1005,'Cedric','Kelly','2019-10-21 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','\0',4),(1006,'Airi','Satou','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',4),(1007,'Brielle','Williamson','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'\0','\0',2),(1008,'Herrod','Chandler','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',4),(1009,'Rhona','Davidson','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','\0',2),(1010,'Colleen','Hurst','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',3),(1011,'Sonya','Frost','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',4),(1012,'Jena','Gaines','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',3),(1013,'Quinn','Flynn','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',0),(1014,'Eshwar ','Nag','2019-10-23 00:00:00','2106 Park Grove Ave','Los Angeles, CA, 90007','3237701555','','elanka@usc.edu','2019-10-16','email','USC','SA','Hindi','','',0),(1015,'Eshwar Nag','Lanka','2019-10-21 00:00:00','','New York','3237701567','','leshwar4@gmail.com','2019-10-15',NULL,'','','','','',0),(1016,'Eshwar Nag','Lanka','2019-10-21 00:00:00','','New York','3237701567','','leshwar4@gmail.com','2019-10-15',NULL,'','','','','',0),(1017,'Eshwar Nag','Lanka','2019-10-21 00:00:00','','New York','3237701567','','leshwar4@gmail.com','2019-10-15',NULL,'','','','','',0),(1018,'Eshwar Nag','Lanka','2019-10-22 00:00:00','New York','New York','3237777777','','leshwar4@gmail.com','2019-10-08',NULL,'','','','','',0),(1019,'Eshwar','Potpani','2019-10-15 00:00:00','','Los Angeles','3237702222','','mp@gmail.com','2019-10-08','phone','','','','','',0),(1020,'Eshwar','Potpani','2019-10-15 00:00:00','','Los Angeles','3237702222','','mp@gmail.com','2019-10-08','phone','','','','','',0),(1021,'Eshwar','Potpani','2019-10-15 00:00:00','','Los Angeles','3237702222','','mp@gmail.com','2019-10-08','phone','','','','','',0),(1022,'Eshwar','Potpani','2019-10-15 00:00:00','','Los Angeles','3237702222','','mp@gmail.com','2019-10-08','phone','','','','','',0),(1023,'Nikhil','Sir','0000-00-00 00:00:00','2352 Portland St','LA, CA, 90007','5646675334','','test@usc.edu','2019-10-14','phone','USC','TA','','','',0),(1024,'Tommy','Trojan','0000-00-00 00:00:00','Severance St','Los Angeles','1234','',NULL,'1992-01-01','phone','','','','','',0),(1025,'Navya','Dass','0000-00-00 00:00:00','severance','90007','232-522-4444','','jknklhnlkhn@gmail.com','2019-01-01','email','nothing','nothing','english','','',0),(1026,'Saurabh','Dube','0000-00-00 00:00:00','2620 Severance St, Apt 7','Los Angeles','213-421-4738','','dubes@usc.edu','2019-10-29','phone','','','','','',4);
+INSERT INTO `mentor_data` VALUES (1027,'Eshwar Nag','Lanka','0000-00-00 00:00:00','2106 Park Gove Ave','Los Angeles, CA, 90007','323-770-1555','','elanka@usc.edu','1983-07-20','email','Metro Local LA','Associate Program Manager','Spanish, Hindi','','\0',4),(1028,'Mukesh','Poptani','0000-00-00 00:00:00','2106 Park Grove Ave','Los Angeles, CA, 90007','323-770-1554','','poptani@usc.edu','1987-06-16','phone','Amtrak','Data Engineer','French, Tamil','','\0',4),(1029,'Navya Dass','Chittor','0000-00-00 00:00:00','2420 Severence St, Apt 9','Los Angeles, CA, 92037','323-700-9878','','chittoor@usc.edu','1983-06-14','email','','','','','',4),(1030,'Nikita','Shinde','0000-00-00 00:00:00','2420 Severence St, Apt 9','San Diego, CA, 92037','323-770-1550','','nmshinde@usc.edu','1983-06-21','phone','','','','','',4),(1031,'Yash','Vora','0000-00-00 00:00:00','2420 Severence St, Apt 9','San Diego, CA, 92037','323-700-9879','','yashvora@usc.edu','1983-07-14','email','','','','','',4),(1032,'Pauline','Field','0000-00-00 00:00:00','PO Box 11202','Glendale CA 91226','818-243-2322','','pauline.field@gmail.com','1988-08-23','email','Self','CEO','','','',2);
 /*!40000 ALTER TABLE `mentor_data` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -65,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:17:09
+-- Dump completed on 2019-12-04 21:17:14

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -38,7 +36,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +45,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$150000$PrOQ2fNqJ8km$czYzSBtU2a9HM6RlSjFiTjjwgzdLnhivpVr7O6Z0yaQ=','2019-11-20 23:39:30.296349',1,'admin','','','poptani@usc.edu',1,1,'2019-10-03 06:07:42.180430'),(2,'pbkdf2_sha256$150000$DVrWXtdNRq8y$Mz4L+dsEcFQTXYpALEJ7KjcFAM4zB18Vv0e9D+RtQY0=','2019-11-22 05:58:05.583149',0,'poptanim','Mukesh','Poptani','poptanimukesh@gmail.com',0,1,'2019-11-17 21:57:05.333914'),(3,'pbkdf2_sha256$150000$Tcze3ayCCA7g$VhN+Qshgz8X04GToTuCOIpdYAqJMuQ1ufi/GdRiSEP0=','2019-11-22 16:53:38.839431',0,'pfield','Pauline','Field','poptanimukesh29@gmail.com',1,1,'2019-11-20 23:40:31.000000'),(4,'pbkdf2_sha256$150000$FqbrkGCL6wTE$Q3oY5b+hPGQFiTORh36HCI6RTFnxgKCITbQJ2Jh+1Vc=',NULL,0,'jknklhnlkhn@gmail.com','Navya','Dass','jknklhnlkhn@gmail.com',0,1,'2019-11-22 00:20:37.091356'),(6,'pbkdf2_sha256$216000$84ScPIeW9rPa$03PMx05xMp3rHUGxbDXhOkYgn8IZU29MX2zBLg9Ugkc=','2019-11-22 10:30:50.778124',0,'thakeraj@gmail.com','Raj','Thaker','thakeraj@gmail.com',0,1,'0000-00-00 00:00:00.000000'),(7,'pbkdf2_sha256$150000$VBEeIEQskwwo$jA8fWJXTpJfT9dwpeGH0/PU0xC5/Ppad5a6sS1wqJh0=','2019-11-22 18:42:59.726762',0,'dubes@usc.edu','Saurabh','Dube','dubes@usc.edu',0,1,'2019-11-22 18:35:35.113740');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$150000$PrOQ2fNqJ8km$czYzSBtU2a9HM6RlSjFiTjjwgzdLnhivpVr7O6Z0yaQ=','2019-11-22 21:03:58.685192',1,'admin','','','poptani@usc.edu',1,1,'2019-10-03 06:07:42.180430'),(8,'pbkdf2_sha256$150000$ZFDS22KL2ldQ$MjtV3QxwXf3pxU/ogWa22A7QEHtc0+2TphB6c0noHnA=','2019-11-23 01:37:40.051206',0,'pfield@5050leadership.org','Pauline','Field','pfield@5050leadership.org',1,1,'2019-11-22 21:15:53.000000'),(9,'pbkdf2_sha256$150000$RnpRp9fhq7Sp$DNEJgOh4J7Q4JpVhlc5cawYfCBVDe0kGhrUUiM3R59Y=','2019-11-23 01:26:43.421233',0,'elanka@usc.edu','Eshwar Nag','Lanka','elanka@usc.edu',0,1,'2019-11-22 21:45:19.988992'),(10,'pbkdf2_sha256$150000$bDAy0TpWUQpU$JUtiqFfzRLjgfq/8i/ypPj2y80NCVbuWf2ntbHrOMPA=','2019-11-23 01:31:35.902995',0,'poptani@usc.edu','Mukesh','Poptani','poptani@usc.edu',0,1,'2019-11-22 22:27:12.935003'),(11,'pbkdf2_sha256$150000$W6XP6hVzmUrh$ZIorO+xJRI5ZFDTAHZWrFr10HLOr2lSX/7vONrn0rJ0=',NULL,0,'chittoor@usc.edu','Navya Dass','Chittor','chittoor@usc.edu',0,1,'2019-11-22 22:34:02.658129'),(12,'pbkdf2_sha256$150000$Q5oLlJNxz1MF$G5VErTgAmJuZFMvJMjk/SMOc4M3hAhpXolodHViEo6o=',NULL,0,'nmshinde@usc.edu','Nikita','Shinde','nmshinde@usc.edu',0,1,'2019-11-22 22:36:40.674754'),(13,'pbkdf2_sha256$150000$kjVZIZbQdiME$ff6HdvThSrfjSvPBBEN8glq/lgfx3YSOmdPB0Xwj0iY=',NULL,0,'yashvora@usc.edu','Yash','Vora','yashvora@usc.edu',0,1,'2019-11-22 23:33:03.340343'),(15,'pbkdf2_sha256$150000$3KLxgHy1Gj8n$iVkA8MMcRsl9mSqpuLxnszuhrKNeJ/piNlBCduG1PC0=',NULL,0,'pauline.field@gmail.com','Pauline','Field','pauline.field@gmail.com',0,1,'2019-11-23 01:09:26.405446');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:17:06
+-- Dump completed on 2019-12-04 21:16:13

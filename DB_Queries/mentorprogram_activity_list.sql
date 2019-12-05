@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -34,7 +32,7 @@ CREATE TABLE `activity_list` (
   `hours` int(11) DEFAULT NULL,
   `minutes` int(11) DEFAULT NULL,
   PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +41,7 @@ CREATE TABLE `activity_list` (
 
 LOCK TABLES `activity_list` WRITE;
 /*!40000 ALTER TABLE `activity_list` DISABLE KEYS */;
-INSERT INTO `activity_list` VALUES (9,'Lunch','KEPT','dfkj','1005_2019-11-01','2019-11-27',1,0),(10,'Dinner','KEPT','df','1005_2019-10-01','2019-11-26',2,2);
+INSERT INTO `activity_list` VALUES (1,'Lunch','YES','Casual meet','1027_2019-11-01','2019-11-01',0,30),(2,'Dinner','YES','Set Bi-weekly goals','1027_2019-11-01','2019-11-07',0,30),(3,'Park','NO','Observed improvement from last meeting','1027_2019-11-01','2019-11-15',0,30),(4,'Cafe','YES','Discussed next month agenda','1027_2019-11-01','2019-11-21',0,30),(5,'Text','YES','Not feeling well','1028_2019-11-01','2019-11-07',0,0);
 /*!40000 ALTER TABLE `activity_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:17:08
+-- Dump completed on 2019-12-04 21:16:14

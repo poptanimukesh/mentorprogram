@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -36,7 +34,7 @@ CREATE TABLE `activity_summary` (
   KEY `mentee_id` (`mentee_id`),
   KEY `mentor_id` (`mentor_id`),
   CONSTRAINT `activity_summary_ibfk_2` FOREIGN KEY (`mentor_id`) REFERENCES `mentor_data` (`mentor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +43,7 @@ CREATE TABLE `activity_summary` (
 
 LOCK TABLES `activity_summary` WRITE;
 /*!40000 ALTER TABLE `activity_summary` DISABLE KEYS */;
-INSERT INTO `activity_summary` VALUES (6,1005,1,'2019-11-01','YES','1005_2019-11-01'),(8,1005,1,'2019-10-01','NO','1005_2019-10-01');
+INSERT INTO `activity_summary` VALUES (1,1027,1,'2019-11-01','YES','1027_2019-11-01'),(2,1028,1,'2019-11-01','NO','1028_2019-11-01');
 /*!40000 ALTER TABLE `activity_summary` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:16:52
+-- Dump completed on 2019-12-04 21:16:05

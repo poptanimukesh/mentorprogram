@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `mentorprogram` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mentorprogram`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: mentor-program-dev.mysql.database.azure.com    Database: mentorprogram
+-- Host: mentor-program-dev2.mysql.database.azure.com    Database: mentorprogram
 -- ------------------------------------------------------
 -- Server version	5.6.42.0
 
@@ -37,7 +35,7 @@ CREATE TABLE `mentee_reg_data` (
   `race_details` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`mentee_id`),
   CONSTRAINT `mentee_reg_data_ibfk_1` FOREIGN KEY (`mentee_id`) REFERENCES `mentee_data` (`mentee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1037 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1043 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +44,7 @@ CREATE TABLE `mentee_reg_data` (
 
 LOCK TABLES `mentee_reg_data` WRITE;
 /*!40000 ALTER TABLE `mentee_reg_data` DISABLE KEYS */;
-INSERT INTO `mentee_reg_data` VALUES (1,'No','NA','NA','NA','NA','NA','NA','No','Black or African American'),(2,'Yes','YA','YA','YA','YA','YA','YA','No','American Indian or Alaska Native'),(3,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(4,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(5,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(6,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(7,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(8,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(9,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(10,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(11,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(12,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(13,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(14,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(15,'Yes','NA','NA','NA','NA','NA','NA','No','Asian'),(16,'Yes','All','All','All','All','All','All','Yes','American Indian or Alaska Native'),(17,NULL,'','','','','','',NULL,'Choose...'),(18,NULL,'','','','','','',NULL,'Choose...'),(19,NULL,'','','','','','',NULL,'Choose...'),(20,NULL,'','','','','','',NULL,'Choose...'),(21,'Yes','','','','','','',NULL,'Choose...'),(22,NULL,'','','','','','',NULL,'Choose...'),(23,'Yes','','','','','','',NULL,'Choose...'),(1001,'Yes','I want to become a best singer','Want to get advice on overcoming frequent depressions','','frequent depressions','Should guide me properly and understand my situations','','No','White'),(1025,'Yes','','','','','','',NULL,'Choose...'),(1026,'Yes','Become Singer','Proper Guidance','Dog lover and foodie','Yes, Need time to relax','Calm and listening','No','No','Choose...'),(1028,'No','Become Actress','Life experiences that can help me','I play sports - football, basketball','No','Active','No','Yes','Asian'),(1029,'No','Become Scientist','Give me proper guidance','I take care of my health','No','Should know his/her stuff','No','No','Choose...'),(1036,NULL,'','','','','','',NULL,'Choose...');
+INSERT INTO `mentee_reg_data` VALUES (1037,NULL,'dvds','xdvd','NY','sdfs','','','Yes','Choose...'),(1038,'Yes','Be a dancer','A person who understands and guides me.','dance, music, travel','No','A person who can give me good advice and guide me during my communication skills.','NA','Yes','Asian'),(1040,'Yes','Footballer','A person who guides me to control my temperament.','dance, music, travel','Not getting the right guidance to network with people in football.','A person who can give me good advice to control my temper.','NA','Yes','Asian'),(1041,'Yes','Pursue my career as a chef','Guide me with recommendations to achieve my goal.','foodie, cooking','Not able to fund myself well.','Guide me with my financial challenges.','','No','Choose...'),(1042,'Yes','To be a successful business owner','Having someone to bounce things off and make better decisions','Health nut','Getting into college','A good listener','I need help','No','Choose...');
 /*!40000 ALTER TABLE `mentee_reg_data` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 11:17:02
+-- Dump completed on 2019-12-04 21:16:11
