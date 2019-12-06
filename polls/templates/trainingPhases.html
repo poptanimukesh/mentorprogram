@@ -43,24 +43,18 @@
                                     </div>
                                     <div id='{{ m.mentor_id }}-1' class="md-step active {% if m.trainingphases > 0 %} done {% endif %}" onclick="markActivated(1,'{{ m.mentor_id }}')">
                                       <div class="md-step-circle" style="{% if m.trainingphases > 0 %} background-color: green; {% endif %}"><span>1</span></div>
-                                      <div class="md-step-title">Step 1</div>
+                                      <div class="md-step-title">Complete application</div>
                                       <div class="md-step-bar-right"></div>
                                     </div>
                                     <div id='{{ m.mentor_id }}-2' class="md-step active {% if m.trainingphases > 1 %} done {% endif %}" onclick="markActivated(2,'{{ m.mentor_id }}')">
                                       <div class="md-step-circle" style="{% if m.trainingphases > 1 %} background-color: green; {% endif %}"><span>2</span></div>
-                                      <div class="md-step-title">Step 2</div>
+                                      <div class="md-step-title">Phone interview</div>
                                       <div class="md-step-bar-left"></div>
                                       <div class="md-step-bar-right"></div>
                                     </div>
-                                    <div id='{{ m.mentor_id }}-3' class="md-step active {% if m.trainingphases > 2 %} done {% endif %}" onclick="markActivated(3,'{{ m.mentor_id }}')">
+                                    <div id='{{ m.mentor_id }}-3' class="md-step active" onclick="markActivated(3,'{{ m.mentor_id }}')">
                                       <div class="md-step-circle" style="{% if m.trainingphases > 2 %} background-color: green; {% endif %}"><span>3</span></div>
-                                      <div class="md-step-title">Step 3</div>
-                                      <div class="md-step-bar-left"></div>
-                                      <div class="md-step-bar-right"></div>
-                                    </div>
-                                    <div id='{{ m.mentor_id }}-4' class="md-step active" onclick="markActivated(4,'{{ m.mentor_id }}')">
-                                      <div class="md-step-circle"><span>4</span></div>
-                                      <div class="md-step-title">Step 4</div>
+                                      <div class="md-step-title">Training</div>
                                       <div class="md-step-bar-left"></div>
                                       <div class="md-step-bar-right"></div>
                                     </div>
@@ -93,7 +87,7 @@
     } );
 
     function reset(idValue) {
-        for(var i = 1; i <= 4; i++) {
+        for(var i = 1; i <= 3; i++) {
             $('#' + idValue + '-' + i).removeClass('done');
             $('#' + idValue + '-' + i).children(":first").css( "background-color", "#0259f9");
         }
@@ -111,7 +105,7 @@
     }
 
     function markActivated(stepNumber,idValue) {
-        if(stepNumber == 4) {
+        if(stepNumber == 3) {
             if(!confirm("Are you sure?\n Marking this will ensure that mentor's training is complete and will be available for match"))
                 return
         }
@@ -119,12 +113,12 @@
         for(var i = 1; i <= stepNumber; i++) {
            adone(idValue, i);
         }
-        for(var i = stepNumber+1; i <= 4; i++) {
+        for(var i = stepNumber+1; i <= 3; i++) {
             $('#' + idValue + '-' + i).removeClass('done');
             $('#' + idValue + '-' + i).children(":first").css( "background-color", "#0259f9");
         }
 
-        if(stepNumber == 4) 
+        if(stepNumber == 3) 
             $('#' + idValue).remove();
 
         $.ajax({

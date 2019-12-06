@@ -111,6 +111,7 @@ def mentor_registration(request):
         mData.languages = request.POST.get('languages')
         mData.isActive = 1
         mData.isAvailable = 1
+        mData.trainingphases = 1
 
         user = User.objects.create_user(mData.email, mData.email, request.POST.get('password'))
         user.first_name = mData.firstname

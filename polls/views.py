@@ -16,7 +16,7 @@ def index(request):
         return redirect("/accounts/login")
     template = loader.get_template('home.html')
     active_mentors = MentorData.objects.all().filter(isactive=1)
-    available_mentors = active_mentors.all().filter(isavailable=1)
+    available_mentors = active_mentors.all().filter(isavailable = 1, isactive = 1, trainingphases = 3)
     associated_mentors_count = active_mentors.all().filter(isavailable=0)
     active_mentees = MenteeData.objects.all().filter(isactive=1)
     available_mentees = active_mentees.all().filter(isavailable=1)
@@ -26,7 +26,7 @@ def index(request):
     print(reports_submitted.count())
     context = {
         'mentor_count': active_mentors.all().count(),
-        'pending_training_count': active_mentors.all().exclude(trainingphases=4).count(),
+        'pending_training_count': active_mentors.all().exclude(trainingphases=3).count(),
         'available_mentors_count' : available_mentors.count(),
         'associated_mentors_count' : associated_mentors_count.count(),
         'active_mentees_count' : active_mentees.count(),
@@ -97,10 +97,10 @@ def associate(request):
         if request.GET.get('city'):
             city = request.GET.get('city')
             mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1, city__contains = city)
-            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, trainingphases = 4, city_state_zip__contains = city)
+            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, trainingphases = 3, city_state_zip__contains = city)
         else:
             mentee_list = MenteeData.objects.all().filter(isavailable = 1, isactive = 1)
-            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, trainingphases = 4)
+            mentor_list = MentorData.objects.all().filter(isavailable = 1, isactive = 1, trainingphases = 3)
         #print(request.GET.get('ethnicity'))
         
         template = loader.get_template('associate.html')
@@ -243,7 +243,7 @@ def trainingPhases(request):
 
         return HttpResponse("SUCCESS")
     else:
-        mentor_list = MentorData.objects.all().filter(trainingphases__lt = 4, isactive = 1)
+        mentor_list = MentorData.objects.all().filter(trainingphases__lt = 3, isactive = 1)
         
         template = loader.get_template('trainingPhases.html')
         context = {

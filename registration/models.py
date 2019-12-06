@@ -51,6 +51,7 @@ class mentorData(models.Model):
     languages = models.CharField(max_length=200, blank=True, null=True)
     isActive = models.IntegerField(blank=True, null=True)
     isAvailable = models.IntegerField(blank=True, null=True)
+    trainingphases = models.IntegerField(db_column='trainingPhases', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         db_table = 'mentor_data'
