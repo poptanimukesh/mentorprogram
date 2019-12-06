@@ -31,8 +31,8 @@
                                 <td>{{ m.email }}</td>
                                 <td>{{ m.phonenumber }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="location.href = '/polls/mentorDetails/{{ m.mentor_id }}'"><i class="fa fa-eye icon"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="deleteUser({{ m.mentor_id }})"><i class="fa fa-trash icon"></i></button>
+                                    <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Mentor Details" class="btn btn-sm btn-primary" onclick="location.href = '/polls/mentorDetails/{{ m.mentor_id }}'"><i class="fa fa-eye fa-2x icon"></i></button>
+                                    <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Mentor"class="btn btn-sm btn-danger" onclick="deleteUser({{ m.mentor_id }})"><i class="fa fa-trash fa-2x icon"></i></button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -54,7 +54,7 @@
         $('#mentor-list').DataTable( {
         } );
 
-        $('#view-user').addClass('active');
+        $('#view-mentors').addClass('active');
     } );
 
     function deleteUser(mentor_id) {

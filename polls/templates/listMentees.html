@@ -30,9 +30,9 @@
                                 <td>{{ m.email }}</td>
                                 <td>{{ m.phonenumber }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="location.href = '/polls/menteeDetails/{{ m.mentee_id }}'"><i class="fa fa-eye icon"></i></button>
+                                    <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Mentee Details" class="btn btn-sm btn-primary" onclick="location.href = '/polls/menteeDetails/{{ m.mentee_id }}'"><i class="fa fa-eye fa-2x icon"></i></button>
                                     <!--<button type="button" class="btn btn-success" onclick="location.href = '/polls/editMentee/{{ m.mentee_id }}'"><i class="fa fa-edit icon"></i></button> -->
-                                    <button type="button" class="btn btn-danger" onclick="deleteUser({{ m.mentee_id }})"><i class="fa fa-trash icon"></i></button>
+                                    <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Mentee" class="btn btn-sm btn-danger" onclick="deleteUser({{ m.mentee_id }})"><i class="fa fa-trash fa-2x icon"></i></button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -55,7 +55,7 @@
         $('#mentee-list').DataTable( {
         } );
 
-        $('#view-user').addClass('active');
+        $('#view-mentees').addClass('active');
     } );
 
     function deleteUser(mentee_id) {
