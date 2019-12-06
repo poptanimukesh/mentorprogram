@@ -132,6 +132,11 @@ def mentorActivity(request):
         
         assoc = MentorMenteeAssoc.objects.filter(mentor_id = mentorId, match_date__lte = datetime.now(), expiry_date__gte = datetime.now())
         print(assoc)
+        summaries = ActivitySummary.objects.values('submission_date').filter(mentor_id = mentorId)
+        past_submissions = list()
+        for summary in summaries:
+            past_submissions.append(summary['submission_date'].strftime("%m-%d-%Y"))
+        print("PAST_SUBMISSIONS", past_submissions)
         incomplete_records = getPastIncompleteReports(assoc, mentorId)
         start_month = ""
         start_year = ""
@@ -145,7 +150,8 @@ def mentorActivity(request):
           'start_month': start_month,
           'start_year': start_year,
           'mentorId' : mentorId,
-          'assoc_len': len(assoc)
+          'assoc_len': len(assoc),
+          'past_submissions': past_submissions
         }
         return HttpResponse(template.render(context, request))
     elif request.method == 'POST':

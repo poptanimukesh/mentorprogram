@@ -1,6 +1,7 @@
 $(document).ready(function(){
   var start_month = document.getElementById("start_month").value;
   var start_year = document.getElementById("start_year").value;
+  
   $("#datepicker").datepicker({ 
     format: "MM yyyy",
     autoclose: true, 
@@ -11,14 +12,21 @@ $(document).ready(function(){
     var newYear = changedDate.date.getFullYear();
     console.log(newMonth);
     console.log(newYear);
+    var current_selection = newMonth + '-01-' + newYear;
     if(newYear < start_year || newMonth < start_month) {
       $("#mentorActivitySummarySection").find("*").attr("disabled", "disabled");
       $('#msg').html('You cannot submit the report of this month. (Date prior to Association)');
       $('#errorMsg').show();
     } else {
-      $("#mentorActivitySummarySection").find("*").removeAttr("disabled");
-      $('#msg').html('');
-      $('#errorMsg').hide();
+      if(summaries.includes(current_selection)) {
+        $("#mentorActivitySummarySection").find("*").attr("disabled", "disabled");
+        $('#msg').html('Already Submitted');
+        $('#errorMsg').show();
+      } else {
+        $("#mentorActivitySummarySection").find("*").removeAttr("disabled");
+        $('#msg').html('');
+        $('#errorMsg').hide();
+      }
     }
   });
   
