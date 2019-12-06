@@ -47,6 +47,8 @@ input[type="text"], input[type="password"] {
 
           {# Assumes you setup the password_reset view in your URLconf #}
           <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+          <p><a href="/registration/mentee/">Register as Mentee</a></p>
+          <p><a href="/registration/mentor/">Register as Mentor</a></p>
           
         {% endblock %}
       </div>
