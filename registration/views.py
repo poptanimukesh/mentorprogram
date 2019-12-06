@@ -41,8 +41,8 @@ def mentee_registration(request):
         mData.save()
 
         #Fetching Primary Key and setting Foreign Key
-        phonenumber = request.POST.get('phone')
-        for rows in menteeData.objects.raw('SELECT mentee_id FROM mentee_data WHERE phonenumber = %s  LIMIT 1', [phonenumber]):
+        email = request.POST.get('email')
+        for rows in menteeData.objects.raw('SELECT mentee_id FROM mentee_data WHERE email = %s  LIMIT 1', [email]):
             mentee_auto_id = rows.mentee_id
 
         #Storing Mentee Other Registration 
@@ -121,10 +121,11 @@ def mentor_registration(request):
         mData.save()
         
         #Fetching Primary Key and setting Foreign Key
-        phonenumber = request.POST.get('phone')
-        for rows in mentorData.objects.raw('SELECT mentor_id FROM mentor_data WHERE phonenumber = %s  LIMIT 1', [phonenumber]):
+        email = request.POST.get('email')
+        for rows in mentorData.objects.raw('SELECT mentor_id FROM mentor_data WHERE email = %s  LIMIT 1', [email]):
             mentor_auto_id = rows.mentor_id
 
+        print('mentor_auto_id :', mentor_auto_id)
         #Storing Mentor Other Registration 
         mRegData.mentor_id = mentor_auto_id
         mRegData.why_mentor = request.POST.get('details_1')

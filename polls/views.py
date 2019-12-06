@@ -9,6 +9,7 @@ from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect
 import csv
 from django.contrib.auth.models import User
+import dateutil.relativedelta
 
 @csrf_exempt
 def index(request):
@@ -185,9 +186,11 @@ def getPastIncompleteReports(assoc, mentorId):
         year = assoc.match_date.year
         today = datetime.today()
         endMonth = str(today.month) + '-' + str(today.year)
-        pastCompleteActivites = ActivitySummary.objects.order_by('submission_date').values_list('submission_date', flat= True).filter(mentor_id=mentorId, submission_date__gte = assoc.match_date).distinct()
+        print("DURATION: ", startMonth, " - ", endMonth)
+        pastCompleteActivites = ActivitySummary.objects.order_by('submission_date').values_list('submission_date', flat= True).filter(mentor_id=mentorId, submission_date__gte = assoc.match_date - dateutil.relativedelta.relativedelta(months=1)).distinct()
         
         records = set([str(x.month) + '-' + str(x.year) for x in pastCompleteActivites])
+        print("pastCompleteActivites Records: ", records)
         while startMonth != endMonth:
             if startMonth not in records:
                 incomplete_records.append(calendar.month_name[month] + '-' + str(year));

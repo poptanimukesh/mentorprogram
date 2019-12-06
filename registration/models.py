@@ -21,7 +21,7 @@ class menteeData(models.Model):
 #Mentee Registration Table
 class menteeRegistrationData(models.Model):
     mentee_id = models.IntegerField(primary_key=True)
-    comm_plat = models.CharField(max_length=5, blank=True, null=True)
+    comm_plat = models.CharField(max_length=250, blank=True, null=True)
     desire_dream = models.CharField(max_length=250, blank=True, null=True)
     have_mentor = models.CharField(max_length=250, blank=True, null=True)
     desc_yourslf = models.CharField(max_length=250, blank=True, null=True)
@@ -58,7 +58,7 @@ class mentorData(models.Model):
 
 class mentorRegistrationData(models.Model):
     mentor_id = models.IntegerField(primary_key=True)
-    why_mentor = models.CharField(max_length=5, blank=True, null=True)
+    why_mentor = models.CharField(max_length=250, blank=True, null=True)
     brief_summary = models.CharField(max_length=250, blank=True, null=True)
     diff_situation = models.CharField(max_length=250, blank=True, null=True)
     min_commit = models.CharField(max_length=250, blank=True, null=True)
