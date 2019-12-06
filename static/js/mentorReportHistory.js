@@ -1,4 +1,12 @@
 $(document).ready(function(){
+
+  $(".xyz").datepicker({ 
+    format: "MM yyyy",
+    autoclose: true, 
+    minViewMode: "months",
+    todayHighlight: true,
+  }).datepicker('update', new Date());
+
   $(document).on('click', '#submit', (function(e) {
     var mentor_id = $('#inputState').find('option:selected').attr('id');
     var start_range = $('#start_range').val();
@@ -46,6 +54,9 @@ $(document).ready(function(){
           mentor_history += '</div>';
 
           $('#demo').html(mentor_history);
+        } else{
+          $('#demo').html('');
+          alert('No report found');
         }
 
       },

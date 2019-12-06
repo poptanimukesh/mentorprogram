@@ -8,6 +8,8 @@
 
 {% include "header.html" %}
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+
 <style type="text/css">
   .custom-btn {
     font-size: 20px;
@@ -37,11 +39,15 @@
               </div>
               <div class="form-group col-md-3">
                 <label for="inputState">Start Range</label>
-                <input id="start_range" class="form-control" type="month" name="start_range">
+                <div class="xyz input-group date">
+                  <input id="start_range" name="start_range" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                </div>
               </div>
               <div class="form-group col-md-3">
                 <label for="inputState">End Range</label>
-                <input id="end_range" class="form-control" type="month" name="end_range">
+                <div class="xyz input-group date">
+                  <input id="end_range" name="end_range" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                </div>
               </div>
               <div class="form-group col-sm-3" style="align-items: center;text-align: center">
                 <label for="submit">&nbsp;</label>
@@ -56,6 +62,7 @@
     </body>
 
 {% include "commonJS.html" %}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
   {% block staticfiles %}
   <script rel="stylesheet" src="{% static 'js/mentorReportHistory.js' %}"></script> 
   {% endblock %}

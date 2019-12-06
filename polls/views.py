@@ -167,7 +167,7 @@ def mentorActivity(request):
                 if 'kept' + str(idx) in response:
                     k = 'YES'
                 aList = ActivityList(activity_type=response['activity' + str(idx)], iskept=k
-                    , hours= '%02d' % int(response['dur_h'+str(idx)]), minutes='%02d' % int(response['dur_h'+str(idx)]), comments=response['comments'+str(idx)], 
+                    , hours=response['dur_h'+str(idx)], minutes=response['dur_h'+str(idx)], comments=response['comments'+str(idx)], 
                     report_id = report_id, date = response['date_picker' + str(idx)])
                 aList.save()
             idx = idx + 1
@@ -350,8 +350,8 @@ def viewSubmittedMentorReport(request):
     else:
         mentorId = request.POST['mentor_id']
         print(request.POST['start_range'])
-        start_range = datetime.strptime(request.POST['start_range'] + '-01', '%Y-%m-%d')
-        end_range = datetime.strptime(request.POST['end_range'] + '-30', '%Y-%m-%d')
+        start_range = datetime.strptime(request.POST['start_range'] + '-01', '%B %Y-%d')
+        end_range = datetime.strptime(request.POST['end_range'] + '-30', '%B %Y-%d')
         mentor_history = list()
         activity_summaries = ActivitySummary.objects.all().order_by('-submission_date').filter(mentor_id = mentorId, 
             submission_date__gte = start_range, submission_date__lte = end_range)
